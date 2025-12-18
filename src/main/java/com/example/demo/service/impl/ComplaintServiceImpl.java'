@@ -6,7 +6,8 @@ import java.util.*;
 import com.example.demo.repository.ComplaintRepository;
 
 @Service
-public class ComplaintService{
+public class ComplaintServiceImpl{
 
+    
     
 }
