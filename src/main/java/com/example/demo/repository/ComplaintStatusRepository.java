@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.ComplaintStatus;
 
 @Repository
-public interface ComplaintStatusRepository extends JpaRepository<ComplaintStatus, Integer> {
+public interface ComplaintStatusRepository extends JpaRepository<ComplaintStatus, long> {
     
     
 }

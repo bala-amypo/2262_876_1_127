@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
+import com.example.demo.entity.
 
 @RestController
 @RequestMapping("/status")
@@ -12,7 +13,7 @@ public class StatusController{
     ComplaintStatusService service;
 
     @GetMapping("/history/{id}")
-    public getComplaintStatus(@PathVariable long id){
+    public ComplaintStatus getComplaintStatus(@PathVariable long id){
         service.getComplaintStatus(id);
     }
 }
