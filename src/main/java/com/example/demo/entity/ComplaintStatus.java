@@ -4,12 +4,14 @@ import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-public class ComplaintService{
+public class ComplaintStatus{
     @Id
     private long id;
     private String status;
-    private int baseScore;
     private LocalDateTime updatedOn;
+    @ManyToOne
+    @JoinColumn(name = "complaint")
+    private ComplaintObj complaint;
 
     public long getId(){
         return this.id;
@@ -19,6 +21,13 @@ public class ComplaintService{
         this.id = id;
     }
 
+    public ComplaintObj getComplaint(){
+        return this.complaint;
+    }
+
+    public void setComplaint(ComplaintObj complaint){
+        this.complaint = complaint;
+    }
 
     public String getStatus(){
         return this.status;
@@ -26,24 +35,6 @@ public class ComplaintService{
 
     public void setStatus(String status){
         this.status = status;
-    }
-
-
-    public String getDescription(){
-        return this.description;
-    }
-
-    public void setDescription(String description){
-        this.description = description;
-    }
-
-
-    public int getBaseScore(){
-        return this.baseScore;
-    }
-
-    public void setBaseScore(String baseScore){
-        this.baseScore = baseScore;
     }
 
     public LocalDateTime getUpdatedOn(){
@@ -54,10 +45,10 @@ public class ComplaintService{
         this.updatedOn = updatedOn;
     }
 
-    public ComplaintService(long id, String status, int baseScore, LocalDateTime updatedOn){
+    public ComplaintService(long id, String status, Complaintobj complaint, LocalDateTime updatedOn){
         this.id = id;
         this.status = status;
-        this.baseScore = baseScore;
+        this.complaint = complaint;
         this.updatedOn = updatedOn;
     }
 
