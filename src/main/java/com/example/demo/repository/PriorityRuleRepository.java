@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.entity.PriorityRule;
 
 @Repository
-public interface PriorityRuleRepository extends JpaRepository<PriorityRule, Integer> {
+public interface PriorityRuleRepository extends JpaRepository<PriorityRule, Long> {
     
     
 }
