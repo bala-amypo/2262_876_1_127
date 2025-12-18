@@ -10,14 +10,14 @@ public class ComplaintStatus{
     private String status;
     private LocalDateTime updatedOn;
     @ManyToOne
-    @JoinColumn(name = "complaint")
+    @JoinColumn(name = "complaint_id")
     private ComplaintObj complaint;
 
     public long getId(){
         return this.id;
     }
 
-    public void setId(int id){
+    public void setId(long id){
         this.id = id;
     }
 
@@ -41,18 +41,19 @@ public class ComplaintStatus{
         return this.updatedOn;
     }
 
+    @PreUpdate
     public void setUpdatedOn(LocalDateTime updatedOn){
         this.updatedOn = updatedOn;
     }
 
-    public ComplaintService(long id, String status, Complaintobj complaint, LocalDateTime updatedOn){
+    public ComplaintStatus(long id, String status, ComplaintObj complaint, LocalDateTime updatedOn){
         this.id = id;
         this.status = status;
         this.complaint = complaint;
         this.updatedOn = updatedOn;
     }
 
-    public ComplaintService(){
+    public ComplaintStatus(){
         
     }
 }
