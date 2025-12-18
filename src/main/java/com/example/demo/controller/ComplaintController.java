@@ -4,8 +4,9 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
-@RestController
+@RestController("/complaints")
 public class ComplaintController{
 
-    `
+    @PostMapping("/submit")
+    public Complaint submitComplaint(@RequestBody )
 }
