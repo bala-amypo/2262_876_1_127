@@ -1,8 +1,12 @@
 package com.example.demo.service;
 
+import org.springframework.beans.factory.annotation.*;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.stereotype.*;
+import java.util.*;
 import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
-import java.util.*;
+
 
 @Service
 public class UserServiceImpl implements UserService{
