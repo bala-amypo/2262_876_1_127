@@ -25,11 +25,11 @@ public class ComplaintController{
 
     @GetMapping("/prioritized")
     public List<Complaint> getPrioritizedComplaints(){
-        return service.getPriorityComplaints();
+        return service.getPrioritizedComplaints();
     }
 
     @PutMapping("/status/{id}")
-    public String updateComplaintStatus(Long id, String status){
+    public void updateComplaintStatus(@PathVariable Long id,@RequestParam String status){
         service.updateComplaintStatus(id, status);
     }
 }

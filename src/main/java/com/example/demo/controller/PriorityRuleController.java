@@ -5,6 +5,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 @RestController
+@RequestMapping("/rules")
+
 public class PriorityRuleController{
-    
+
+    @GetMapping("/all")
+    public List<PriorityRule> getAllRules(){
+        
+    }
 }
