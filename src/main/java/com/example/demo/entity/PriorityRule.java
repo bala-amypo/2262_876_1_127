@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class User{
+public class PriorityRule{
     @Id
     private long id;
     private String category, description;

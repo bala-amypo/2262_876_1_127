@@ -3,7 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class User{
+public class ComplaintService{
     @Id
     private long id;
     private String status;
@@ -42,5 +42,9 @@ public class User{
 
     public int setBaseScore(String baseScore){
         this.baseScore = baseScore;
+    }
+
+    public ComplaintService(){
+        
     }
 }
