@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import java.util.*;
 import com.example.demo.repository.ComplaintRepository;
-import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ComplaintService;
 import com.example.demo.entity.Complaint;
 
@@ -13,15 +12,13 @@ public class ComplaintServiceImpl implements ComplaintService{
 
     @Autowired
     ComplaintRepository repo;
-    @Autowired
-    UserRepository userRepo;
 
     public Complaint submitComplaint(Complaint request){
         repo.save(request);
     }
 
     public List<Complaint> getUserComplaints(Long userId){
-        return userRepo.findById(userId);
+        return repo.findById(userId);
     }
 
     public List<Complaint> getPrioritizedComplaints(){
@@ -29,8 +26,8 @@ public class ComplaintServiceImpl implements ComplaintService{
     }
 
     public void updateComplaintStatus(Long id, String status){
-        complaint.setId(id);
-        repo.save(id);
+        Complaint complaint = repo.findById(id);
+        repo.save(complaint);
     }
     
 }
