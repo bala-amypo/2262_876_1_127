@@ -8,12 +8,12 @@ import com.example.demo.service.ComplaintService;
 import com.example.demo.entity.Complaint;
 
 @Service
-public class ComplaintServiceImpl implements ComplaintService{
+public class PriorityRuleServiceImpl implements PriorityRuleService{
 
     @Autowired
     PriorityRuleServiceRepository repo;
 
-    
-    
-    
+    public List<PriorityRule> getAllRules(){
+        returnrepo.findAll();
+    }
 }
