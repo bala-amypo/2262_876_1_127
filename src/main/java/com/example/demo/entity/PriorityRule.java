@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 @Entity
 public class PriorityRule{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String category, description;
     private int baseScore;
@@ -13,7 +14,7 @@ public class PriorityRule{
         return this.id;
     }
 
-    public void setId(int id){
+    public void setId(long id){
         this.id = id;
     }
 
@@ -40,15 +41,17 @@ public class PriorityRule{
         return this.baseScore;
     }
 
-    public void setBaseScore(String baseScore){
+    public void setBaseScore(int baseScore){
         this.baseScore = baseScore;
     }
 
-    public PriorityRule(){
-
+    public PriorityRule(String category, String description, int baseScore){
+        this.category = category;
+        this.description = description;
+        this.baseScore = baseScore;
     }
     
     public PriorityRule(){
-        
+        this.baseScore = 10;
     }
 }

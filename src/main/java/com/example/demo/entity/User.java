@@ -7,17 +7,16 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(unique=true);
+    @Column(unique=true)
     private String email;
     private String name;
-    @Hashed
     private String password;
 
     public long getId(){
         return this.id;
     }
 
-    public void setId(int id){
+    public void setId(long id){
         this.id = id;
     }
 
@@ -48,8 +47,7 @@ public class User{
         this.password = password;
     }
 
-    public User(long id, String name, String email, String password){
-        this.id = id
+    public User(String name, String email, String password){
         this.name = name;
         this.email = email;
         this.password = password;
