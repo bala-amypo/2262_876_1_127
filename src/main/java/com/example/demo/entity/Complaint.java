@@ -22,7 +22,7 @@ public class Complaint{
         return this.name;
     }
 
-    public setName(String name){
+    public String setName(String name){
         this.name = name;
     }
 
@@ -31,7 +31,7 @@ public class Complaint{
         return this.email;
     }
 
-    public setEmail(String email){
+    public String setEmail(String email){
         this.email = email;
     }
 
@@ -40,7 +40,7 @@ public class Complaint{
         return this.password;
     }
 
-    public setPassword(String password){
+    public String setPassword(String password){
         this.password = password;
     }
 }

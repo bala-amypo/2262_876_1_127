@@ -18,29 +18,29 @@ public class User{
     }
 
 
-    public String getName(){
-        return this.name;
+    public String getCategory(){
+        return this.category;
     }
 
-    public setName(String name){
-        this.name = name;
-    }
-
-
-    public String getEmail(){
-        return this.email;
-    }
-
-    public setEmail(String email){
-        this.email = email;
+    public String setCategory(String category){
+        this.category = category;
     }
 
 
-    public String getPassword(){
-        return this.password;
+    public String getDescription(){
+        return this.description;
     }
 
-    public setPassword(String password){
-        this.password = password;
+    public String setDescription(String description){
+        this.description = description;
+    }
+
+
+    public int getBaseScore(){
+        return this.baseScore;
+    }
+
+    public int setBaseScore(String baseScore){
+        this.baseScore = baseScore;
     }
 }

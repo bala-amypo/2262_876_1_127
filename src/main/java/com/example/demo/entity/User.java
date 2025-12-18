@@ -23,7 +23,7 @@ public class User{
         return this.name;
     }
 
-    public setName(String name){
+    public String setName(String name){
         this.name = name;
     }
 
@@ -32,7 +32,7 @@ public class User{
         return this.email;
     }
 
-    public setEmail(String email){
+    public String setEmail(String email){
         this.email = email;
     }
 
@@ -41,7 +41,7 @@ public class User{
         return this.password;
     }
 
-    public setPassword(String password){
+    public String setPassword(String password){
         this.password = password;
     }
 }
