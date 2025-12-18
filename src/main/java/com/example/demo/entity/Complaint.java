@@ -3,11 +3,11 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-public class User{
+public class Complaint{
     @Id
     private long id;
-    private String email;
-    private String name, password;
+    private String title, description, category;
+    prit
 
     public long getId(){
         return this.id;
