@@ -9,7 +9,10 @@ public class Complaint{
     private String title, description, category;
     private int priorityScore;
     private LocalDateTime submittedOn;
-    private @ManyToOne user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
 
     public long getId(){
         return this.id;
@@ -39,7 +42,7 @@ public class Complaint{
 
 
     public String getCategory(){
-        return this.password;
+        return this.category;
     }
 
     public void setCategory(String category){
@@ -62,15 +65,22 @@ public class Complaint{
         this.submittedOn = submittedOn;
     }
 
-    public @ManyToOne getUser(){
+    public User getUser(){
         return this.user;
     }
 
-    public void setUser(@ManyToOne user){
-        this
+    public void setUser(User user){
+        this.user = user;
     }
-    public Complaint(){
-        
+
+    public Complaint(long id, String title, String description, String category, int priorityScore, LocalDateTime submittedOn, User user){
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        this.category = category;
+        this.priorityScore = priorityScore;
+        this.submittedOn = submittedOn;
+        this.user = user;
     }
 
     public Complaint(){
