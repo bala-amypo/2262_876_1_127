@@ -1,8 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.repository.ComplaintStatusRepository;
 import java.util.*;
+import com.example.demo.entity.ComplaintStatus;
 
-public interface ComplaintStatusService extends ComplaintStatusRepository{
-    public getComplaintStatus(long id);
+public interface ComplaintStatusService{
+    public ComplaintStatus getComplaintStatus(long id);
 }
