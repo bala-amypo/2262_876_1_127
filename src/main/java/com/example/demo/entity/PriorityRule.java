@@ -43,4 +43,12 @@ public class PriorityRule{
     public int setBaseScore(String baseScore){
         this.baseScore = baseScore;
     }
+
+    public PriorityRule(){
+
+    }
+    
+    public PriorityRule(){
+        
+    }
 }

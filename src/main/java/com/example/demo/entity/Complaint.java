@@ -43,4 +43,12 @@ public class Complaint{
     public String setPassword(String password){
         this.password = password;
     }
+
+    public Complaint(){
+        
+    }
+    
+    public Complaint(){
+
+    }
 }

@@ -44,4 +44,12 @@ public class User{
     public String setPassword(String password){
         this.password = password;
     }
+
+    public User(){
+
+    }
+    
+    public User(){
+        
+    }
 }
