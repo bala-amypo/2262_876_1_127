@@ -17,4 +17,19 @@ public class ComplaintController{
     public Complaint submitComplaint(@RequestBody Complaint complaint){
         return service.submitComplaint(complaint);
     }
+
+    @GetMapping("/user/{userId}")
+    public List<Complaint> getUserComplaints(@PathVariable long userId){
+        return service.getUserComplaints(userId);
+    }
+
+    @GetMapping("/prioritized")
+    public List<Complaint> getPrioritizedComplaints(){
+        return service.getPriorityComplaints();
+    }
+
+    @PutMapping("/status/{id}")
+    public String updateComplaintStatus(Long id, String status){
+        service.updateComplaintStatus(id, status);
+    }
 }
