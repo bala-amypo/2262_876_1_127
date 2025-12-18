@@ -9,9 +9,17 @@ import com.example.demo.service.UserService;
 @RestController
 @RequestMapping("/auth")
 public class AuthController{
+
     @Autowired
     UserService service;
+
+    @PostMapping("/register")
     public User registerUser(@RequestBody User user){
-        service.registerUser(user);
+        return service.registerUser(user);
+    }
+
+    @PostMapping("/login")
+    public User loginuser(@RequestBody User user){
+        return service.loginUser(user);
     }
 }
