@@ -1,10 +1,12 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity
 public class Complaint{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title, description, category;
     private int priorityScore;
@@ -18,7 +20,7 @@ public class Complaint{
         return this.id;
     }
 
-    public void setId(int id){
+    public void setId(long id){
         this.id = id;
     }
 
@@ -73,13 +75,15 @@ public class Complaint{
         this.user = user;
     }
 
-    public Complaint(long id, String title, String description, String category, int priorityScore, LocalDateTime submittedOn, User user){
-        this.id = id;
+    @PrePersist
+    public void onCreate() {
+    this.submittedOn = LocalDateTime.now();
+   }
+    public Complaint(String title, String description, String category, int priorityScore, User user){
         this.title = title;
         this.description = description;
         this.category = category;
         this.priorityScore = priorityScore;
-        this.submittedOn = submittedOn;
         this.user = user;
     }
 
