@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Complaint{
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title, description, category;
     private int priorityScore;
@@ -79,7 +79,8 @@ public class Complaint{
     public void onCreate() {
     this.submittedOn = LocalDateTime.now();
    }
-    public Complaint(String title, String description, String category, int priorityScore, User user){
+    public Complaint(long id, String title, String description, String category, int priorityScore, User user){
+        this.id = id;
         this.title = title;
         this.description = description;
         this.category = category;
