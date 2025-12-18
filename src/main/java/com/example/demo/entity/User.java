@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 public class User{
     @Id
     private long id;
+    @Column(unique
     private String email;
     private String name, password;
 

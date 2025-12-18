@@ -7,7 +7,7 @@ public class Complaint{
     @Id
     private long id;
     private String title, description, category;
-    prit
+    private int priorityScore
 
     public long getId(){
         return this.id;
