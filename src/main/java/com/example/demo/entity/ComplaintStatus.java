@@ -6,13 +6,13 @@ import java.time.LocalDateTime;
 @Entity
 public class ComplaintStatus{
     @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String status;
     private LocalDateTime updatedOn;
     @ManyToOne
     @JoinColumn(name = "complaint_id")
-    private ComplaintObj complaint;
+    private Complaint complaint;
 
     public long getId(){
         return this.id;
@@ -22,11 +22,11 @@ public class ComplaintStatus{
         this.id = id;
     }
 
-    public ComplaintObj getComplaint(){
+    public Complaint getComplaint(){
         return this.complaint;
     }
 
-    public void setComplaint(ComplaintObj complaint){
+    public void setComplaint(Complaint complaint){
         this.complaint = complaint;
     }
 
@@ -48,8 +48,7 @@ public class ComplaintStatus{
         this.updatedOn = LocalDateTime.now();
     }
 
-    public ComplaintStatus(long id, String status, ComplaintObj complaint){
-        this.id = id;
+    public ComplaintStatus(String status, Complaint complaint){
         this.status = status;
         this.complaint = complaint;
     }

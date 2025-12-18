@@ -5,10 +5,13 @@ import jakarta.persistence.*;
 @Entity
 public class User{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(unique=true);
     private String email;
-    private String name, password;
+    private String name;
+    @Hashed
+    private String password;
 
     public long getId(){
         return this.id;
