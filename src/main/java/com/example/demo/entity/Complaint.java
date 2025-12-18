@@ -13,7 +13,7 @@ public class Complaint{
         return this.id;
     }
 
-    public long setId(int id){
+    public void setId(int id){
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class Complaint{
         return this.title;
     }
 
-    public String setTitle(String title){
+    public void setTitle(String title){
         this.title = title;
     }
 
@@ -31,7 +31,7 @@ public class Complaint{
         return this.description;
     }
 
-    public String setDescription(String description){
+    public void setDescription(String description){
         this.description = description;
     }
 
@@ -40,8 +40,16 @@ public class Complaint{
         return this.password;
     }
 
-    public String setCategory(String password){
-        this.password = password;
+    public void setCategory(String category){
+        this.category = category;
+    }
+
+    public int getPriorityScore(){
+        return this.priorityScore;
+    }
+
+    public void setPriorityScore(int priorityScore){
+        this.priorityScore = priorityScore;
     }
 
     public Complaint(){

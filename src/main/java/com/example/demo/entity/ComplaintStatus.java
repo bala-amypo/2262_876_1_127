@@ -13,7 +13,7 @@ public class ComplaintService{
         return this.id;
     }
 
-    public long setId(int id){
+    public void setId(int id){
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class ComplaintService{
         return this.status;
     }
 
-    public String setStatus(String status){
+    public void setStatus(String status){
         this.status = status;
     }
 
@@ -31,7 +31,7 @@ public class ComplaintService{
         return this.description;
     }
 
-    public String setDescription(String description){
+    public void setDescription(String description){
         this.description = description;
     }
 
@@ -40,14 +40,14 @@ public class ComplaintService{
         return this.baseScore;
     }
 
-    public int setBaseScore(String baseScore){
+    public void setBaseScore(String baseScore){
         this.baseScore = baseScore;
     }
 
     public ComplaintService(){
 
     }
-    
+
     public ComplaintService(){
         
     }

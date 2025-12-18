@@ -13,7 +13,7 @@ public class PriorityRule{
         return this.id;
     }
 
-    public long setId(int id){
+    public void setId(int id){
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class PriorityRule{
         return this.category;
     }
 
-    public String setCategory(String category){
+    public void setCategory(String category){
         this.category = category;
     }
 
@@ -31,7 +31,7 @@ public class PriorityRule{
         return this.description;
     }
 
-    public String setDescription(String description){
+    public void setDescription(String description){
         this.description = description;
     }
 
@@ -40,7 +40,7 @@ public class PriorityRule{
         return this.baseScore;
     }
 
-    public int setBaseScore(String baseScore){
+    public void setBaseScore(String baseScore){
         this.baseScore = baseScore;
     }
 
