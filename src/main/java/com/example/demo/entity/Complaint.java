@@ -18,36 +18,36 @@ public class Complaint{
     }
 
 
-    public String getName(){
-        return this.name;
+    public String getTitle(){
+        return this.title;
     }
 
-    public String setName(String name){
-        this.name = name;
-    }
-
-
-    public String getEmail(){
-        return this.email;
-    }
-
-    public String setEmail(String email){
-        this.email = email;
+    public String setTitle(String title){
+        this.title = title;
     }
 
 
-    public String getPassword(){
+    public String getDescription(){
+        return this.description;
+    }
+
+    public String setDescription(String description){
+        this.description = description;
+    }
+
+
+    public String getCategory(){
         return this.password;
     }
 
-    public String setPassword(String password){
+    public String setCategory(String password){
         this.password = password;
     }
 
     public Complaint(){
         
     }
-    
+
     public Complaint(){
 
     }
