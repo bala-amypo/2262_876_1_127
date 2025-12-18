@@ -1,10 +1,10 @@
 package com.example.demo.service.impl;
 
 import org.springframework.beans.factory.annotation.*;
-import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.*;
 import java.util.*;
 import com.example.demo.repository.ComplaintRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ComplaintService;
 import com.example.demo.entity.Complaint;
 
@@ -13,23 +13,24 @@ public class ComplaintServiceImpl implements ComplaintService{
 
     @Autowired
     ComplaintRepository repo;
-    Complaint complaint;
+    @Autowired
+    UserRepository userRepo;
 
-    public Complaint submitComplaint(ComplaintRequest request){
+    public Complaint submitComplaint(Complaint request){
         repo.save(request);
     }
 
     public List<Complaint> getUserComplaints(Long userId){
-        repo.findById(userId);
+        return userRepo.findById(userId);
     }
 
     public List<Complaint> getPrioritizedComplaints(){
-        repo.findAll();
+        return repo.findAll();
     }
 
     public void updateComplaintStatus(Long id, String status){
         complaint.setId(id);
-        repo.save(complaint);
+        repo.save(id);
     }
     
 }
