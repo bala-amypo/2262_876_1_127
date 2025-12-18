@@ -7,11 +7,12 @@ import com.example.demo.repository.ComplaintStatusRepository;
 import com.example.demo.service.ComplaintStatusService;
 import com.example.demo.entity.ComplaintStatus;
 
+@Service
 public class ComplaintStatusServiceImpl implements ComplaintStatusService{
     @Autowired
     ComplaintStatusRepository repo;
 
     public ComplaintStatus getComplaintStatus(long id){
-        return repo.findById(id);
+        return repo.findById(id).orElseThrow();
     }
 }
