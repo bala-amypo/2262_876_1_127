@@ -14,11 +14,11 @@ public class ComplaintServiceImpl implements ComplaintService{
     ComplaintRepository repo;
 
     public Complaint submitComplaint(Complaint request){
-        repo.save(request);
+        return repo.save(request);
     }
 
     public List<Complaint> getUserComplaints(Long userId){
-        return repo.findById(userId);
+        return repo.findByUserId(userId);
     }
 
     public List<Complaint> getPrioritizedComplaints(){
@@ -26,7 +26,8 @@ public class ComplaintServiceImpl implements ComplaintService{
     }
 
     public void updateComplaintStatus(Long id, String status){
-        Complaint complaint = repo.findById(id);
+        Complaint complaint = repo.findById(id).orElseThrow();
+        complaint.setStatus(status);
         repo.save(complaint);
     }
     
