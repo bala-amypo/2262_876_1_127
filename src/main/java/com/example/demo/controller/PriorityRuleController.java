@@ -8,9 +8,11 @@ import java.util.*;
 @RequestMapping("/rules")
 
 public class PriorityRuleController{
+    @Autowired
+    PriorityRuleService service;
 
     @GetMapping("/all")
     public List<PriorityRule> getAllRules(){
-        
+        return service.getAllRules();
     }
 }
