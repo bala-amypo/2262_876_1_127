@@ -9,7 +9,7 @@ public class Complaint{
     private String title, description, category;
     private int priorityScore;
     private LocalDateTime submittedOn;
-    
+    private @ManyToOne user;
 
     public long getId(){
         return this.id;
@@ -54,6 +54,21 @@ public class Complaint{
         this.priorityScore = priorityScore;
     }
 
+    public LocalDateTime getSubmittedOn(){
+        return this.submittedOn;
+    }
+
+    public void setSubmittedOn(LocalDateTime submittedOn){
+        this.submittedOn = submittedOn;
+    }
+
+    public @ManyToOne getUser(){
+        return this.user;
+    }
+
+    public void setUser(@ManyToOne user){
+        this
+    }
     public Complaint(){
         
     }
