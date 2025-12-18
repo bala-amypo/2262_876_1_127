@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 public class ComplaintStatus{
     @Id
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String status;
     private LocalDateTime updatedOn;
@@ -41,16 +42,16 @@ public class ComplaintStatus{
         return this.updatedOn;
     }
 
+    @PrePersist
     @PreUpdate
-    public void setUpdatedOn(LocalDateTime updatedOn){
-        this.updatedOn = updatedOn;
+    public void setUpdatedOn(){
+        this.updatedOn = LocalDateTime.now();
     }
 
-    public ComplaintStatus(long id, String status, ComplaintObj complaint, LocalDateTime updatedOn){
+    public ComplaintStatus(long id, String status, ComplaintObj complaint){
         this.id = id;
         this.status = status;
         this.complaint = complaint;
-        this.updatedOn = updatedOn;
     }
 
     public ComplaintStatus(){

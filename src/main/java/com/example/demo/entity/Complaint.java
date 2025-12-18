@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Complaint{
     @Id
-    // @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String title, description, category;
     private int priorityScore;
