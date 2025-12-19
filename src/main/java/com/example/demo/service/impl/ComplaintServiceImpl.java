@@ -4,15 +4,19 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 import java.util.*;
 import com.example.demo.repository.ComplaintRepository;
+import com.example.demo.repository.ComplaintStatusRepository;
 import com.example.demo.service.ComplaintService;
 import com.example.demo.entity.Complaint;
 import com.example.demo.entity.ComplaintStatus;
+import java.time.LocalDateTime;
 
 @Service
 public class ComplaintServiceImpl implements ComplaintService{
 
     @Autowired
     ComplaintRepository repo;
+    @Autowired
+    ComplaintStatusRepository statusRepo;
 
     public Complaint submitComplaint(Complaint request){
         return repo.save(request);
