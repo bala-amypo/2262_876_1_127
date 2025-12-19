@@ -9,6 +9,7 @@ import com.example.demo.service.ComplaintService;
 import com.example.demo.entity.Complaint;
 import com.example.demo.entity.ComplaintStatus;
 import java.time.LocalDateTime;
+import com.example.demo.entity.User;
 
 @Service
 public class ComplaintServiceImpl implements ComplaintService{
@@ -19,7 +20,7 @@ public class ComplaintServiceImpl implements ComplaintService{
     ComplaintStatusRepository statusRepo;
 
     @Autowired
-UserRepository userRepo;
+    UserRepository userRepo;
 
 @Override
 public Complaint submitComplaint(Complaint request){
