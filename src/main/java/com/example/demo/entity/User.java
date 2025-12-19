@@ -1,6 +1,7 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User{
@@ -10,6 +11,7 @@ public class User{
     @Column(unique=true)
     private String email;
     private String name;
+    @JsonIgnore
     private String password;
 
     public long getId(){
