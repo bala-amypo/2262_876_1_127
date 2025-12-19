@@ -6,6 +6,7 @@ import java.util.*;
 import com.example.demo.repository.ComplaintStatusRepository;
 import com.example.demo.service.ComplaintStatusService;
 import com.example.demo.entity.ComplaintStatus;
+import jakarta.persistence.*;
 
 @Service
 public class ComplaintStatusServiceImpl implements ComplaintStatusService{
