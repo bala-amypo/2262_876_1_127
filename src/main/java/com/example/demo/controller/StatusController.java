@@ -14,7 +14,7 @@ public class StatusController{
     ComplaintStatusService service;
 
     @GetMapping("/history/{id}")
-    public ComplaintStatus getComplaintStatus(@PathVariable Long id){
+    public List<ComplaintStatus> getComplaintStatus(@PathVariable Long id){
         return service.getComplaintStatus(id);
     }
 }

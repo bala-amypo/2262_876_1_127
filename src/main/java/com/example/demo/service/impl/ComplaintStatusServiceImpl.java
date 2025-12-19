@@ -15,8 +15,7 @@ public class ComplaintStatusServiceImpl implements ComplaintStatusService{
 
     @Override
     public List<ComplaintStatus> getComplaintStatus(Long id) {
-        
-    return repo.findByComplaintId(id)
+    return repo.findByComplaintId(id);
     }
 
 }
