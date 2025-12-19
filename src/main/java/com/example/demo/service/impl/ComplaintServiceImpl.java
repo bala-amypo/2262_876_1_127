@@ -5,6 +5,7 @@ import org.springframework.stereotype.*;
 import java.util.*;
 import com.example.demo.repository.ComplaintRepository;
 import com.example.demo.repository.ComplaintStatusRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.ComplaintService;
 import com.example.demo.entity.Complaint;
 import com.example.demo.entity.ComplaintStatus;
