@@ -22,5 +22,17 @@ public class ComplaintStatusServiceImpl implements ComplaintStatusService{
     }
 
     List<ComplaintStatus> findByComplaintId(Long complaintId){
-    
+
+    List<ComplaintStatus> statuses =
+            repo.findByComplaintId(complaintId);
+
+    if (statuses.isEmpty()) {
+        throw new EntityNotFoundException(
+            "No status found for complaint id: " + complaintId
+        );
+    }
+
+    return statuses;
+}
+
 }
