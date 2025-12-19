@@ -18,6 +18,11 @@ public class UserServiceImpl implements UserService{
     }
     public User loginUser(User user){
         User dbUser = repo.findByEmail(user.getEmail());
-        if()
+        if(dbUser.isEmpty())
+            throw new RunTimeException("Email not found!");
+        if(!user.password.equals(user.getpassword()))
+            throw new RunTimeException("Invalid Password!");
+
+        return user;
     }
 }
