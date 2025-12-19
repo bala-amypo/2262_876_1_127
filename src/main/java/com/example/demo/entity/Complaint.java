@@ -18,8 +18,11 @@ public class Complaint{
     private LocalDateTime submittedOn;
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @Schema(
+    description = "Existing user reference",
+    example = "{ \"id\": 1 }",
+    required = true)
     private User user;
-
 
     public Long getId(){
         return this.id;
