@@ -16,9 +16,10 @@ public class Complaint{
     private int priorityScore;
     @Schema(hidden = true)
     private LocalDateTime submittedOn;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
+
 
     public Long getId(){
         return this.id;

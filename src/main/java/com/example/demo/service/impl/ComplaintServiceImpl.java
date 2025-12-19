@@ -26,6 +26,10 @@ public class ComplaintServiceImpl implements ComplaintService{
 @Override
 public Complaint submitComplaint(Complaint request) {
 
+    if (request.getUser() == null || request.getUser().getId() == null) {
+        throw new IllegalArgumentException("user.id is required");
+    }
+
     request.setId(null);
 
     Long userId = request.getUser().getId();
@@ -35,7 +39,6 @@ public Complaint submitComplaint(Complaint request) {
     request.setUser(user);
 
     Complaint saved = repo.save(request);
-
     ComplaintStatus status = new ComplaintStatus();
     status.setStatus("OPEN");
     status.setComplaint(saved);
@@ -43,6 +46,7 @@ public Complaint submitComplaint(Complaint request) {
 
     return saved;
 }
+
 
 
     public List<Complaint> getUserComplaints(Long userId){
