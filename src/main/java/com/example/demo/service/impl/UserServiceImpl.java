@@ -17,6 +17,7 @@ public class UserServiceImpl implements UserService{
         return repo.save(user);
     }
     public User loginUser(User user){
-        return repo.save(user);
+        User dbUser = repo.findByEmail(user.getEmail());
+        if()
     }
 }
