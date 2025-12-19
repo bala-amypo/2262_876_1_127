@@ -8,12 +8,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties({"email", "name", "password"})
 @Entity
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(hidden = true)
     @Schema(required = true)
     private Long id;
     @Column(unique=true)
