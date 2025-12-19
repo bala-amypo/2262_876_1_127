@@ -12,7 +12,7 @@ public class ComplaintStatusServiceImpl implements ComplaintStatusService{
     @Autowired
     ComplaintStatusRepository repo;
 
-    public ComplaintStatus getComplaintStatus(long id){
+    public ComplaintStatus getComplaintStatus(Long id){
         return repo.findById(id).orElseThrow();
     }
 }

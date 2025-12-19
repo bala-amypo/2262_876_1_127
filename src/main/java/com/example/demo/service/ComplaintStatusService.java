@@ -4,5 +4,5 @@ import java.util.*;
 import com.example.demo.entity.ComplaintStatus;
 
 public interface ComplaintStatusService{
-    public ComplaintStatus getComplaintStatus(long id);
+    public ComplaintStatus getComplaintStatus(Long id);
 }
