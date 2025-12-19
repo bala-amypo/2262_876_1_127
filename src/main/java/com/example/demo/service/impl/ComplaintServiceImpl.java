@@ -44,7 +44,6 @@ public class ComplaintServiceImpl implements ComplaintService{
 
     ComplaintStatus cs = new ComplaintStatus();
     cs.setStatus(status);
-    cs.setUpdatedOn(LocalDateTime.now());
     cs.setComplaint(complaint);
 
     statusRepo.save(cs);
