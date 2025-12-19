@@ -22,7 +22,7 @@ public class ComplaintStatus{
         return this.id;
     }
 
-    public void setId(long id){
+    public void setId(Long id){
         this.id = id;
     }
 
@@ -40,10 +40,6 @@ public class ComplaintStatus{
 
     public void setStatus(String status){
         this.status = status;
-    }
-
-    public LocalDateTime getUpdatedOn(){
-        return this.updatedOn;
     }
 
     @PrePersist
