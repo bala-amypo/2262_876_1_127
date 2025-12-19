@@ -14,6 +14,7 @@ public class ComplaintStatusServiceImpl implements ComplaintStatusService{
     ComplaintStatusRepository repo;
 
     public ComplaintStatus getComplaintStatus(Long id) {
+        
     return repo.findById(id)
             .orElseThrow(() ->
                 new EntityNotFoundException("ComplaintStatus not found with id: " + id)
