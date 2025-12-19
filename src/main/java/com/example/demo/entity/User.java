@@ -1,12 +1,15 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(hidden = true)
     private Long id;
     @Column(unique=true)
     private String email;

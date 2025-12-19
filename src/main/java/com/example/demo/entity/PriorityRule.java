@@ -1,11 +1,15 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 public class PriorityRule{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(hidden = true)
     private Long id;
     private String category, description;
     private int baseScore;
