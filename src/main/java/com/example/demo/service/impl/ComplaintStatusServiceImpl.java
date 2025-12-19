@@ -12,7 +12,10 @@ public class ComplaintStatusServiceImpl implements ComplaintStatusService{
     @Autowired
     ComplaintStatusRepository repo;
 
-    public ComplaintStatus getComplaintStatus(Long id){
-        return repo.findById(id).orElseThrow();
-    }
+    public ComplaintStatus getComplaintStatus(Long id) {
+    return repo.findById(id)
+            .orElseThrow(() ->
+                new EntityNotFoundException("ComplaintStatus not found with id: " + id)
+            );
+}
 }
