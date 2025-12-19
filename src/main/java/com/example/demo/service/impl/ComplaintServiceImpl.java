@@ -38,9 +38,16 @@ public class ComplaintServiceImpl implements ComplaintService{
     }
 
     public void updateComplaintStatus(Long id, String status){
-        Complaint complaint = repo.findById(id).orElseThrow();
-        // ComplaintStatus.setStatus(status);
-        repo.save(complaint);
-    }
+
+    Complaint complaint = repo.findById(id)
+        .orElseThrow(() -> new RuntimeException("Complaint not found"));
+
+    ComplaintStatus cs = new ComplaintStatus();
+    cs.setStatus(status);
+    cs.setUpdatedOn(LocalDateTime.now());
+    cs.setComplaint(complaint);
+
+    statusRepo.save(cs);
+}
     
 }
