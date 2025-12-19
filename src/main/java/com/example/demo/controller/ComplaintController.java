@@ -19,7 +19,7 @@ public class ComplaintController{
     }
 
     @GetMapping("/user/{userId}")
-    public List<Complaint> getUserComplaints(@PathVariable long userId){
+    public List<Complaint> getUserComplaints(@PathVariable Long userId){
         return service.getUserComplaints(userId);
     }
 
