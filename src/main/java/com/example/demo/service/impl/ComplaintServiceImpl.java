@@ -18,16 +18,29 @@ public class ComplaintServiceImpl implements ComplaintService{
     @Autowired
     ComplaintStatusRepository statusRepo;
 
-    public Complaint submitComplaint(Complaint request){
+    @Autowired
+UserRepository userRepo;
+
+@Override
+public Complaint submitComplaint(Complaint request){
+
+    request.setId(null);
+  
+    Long userId = request.getUser().getId();
+    User user = userRepo.findById(userId)
+        .orElseThrow(() -> new RuntimeException("User not found"));
+
+    request.setUser(user);
 
     Complaint saved = repo.save(request);
+
     ComplaintStatus status = new ComplaintStatus();
     status.setStatus("OPEN");
     status.setComplaint(saved);
     statusRepo.save(status);
+
     return saved;
 }
-
 
     public List<Complaint> getUserComplaints(Long userId){
         return repo.findByUserId(userId);
