@@ -24,10 +24,10 @@ public class ComplaintServiceImpl implements ComplaintService{
     UserRepository userRepo;
 
 @Override
-public Complaint submitComplaint(Complaint request){
+public Complaint submitComplaint(Complaint request) {
 
     request.setId(null);
-  
+
     Long userId = request.getUser().getId();
     User user = userRepo.findById(userId)
         .orElseThrow(() -> new RuntimeException("User not found"));
@@ -43,6 +43,7 @@ public Complaint submitComplaint(Complaint request){
 
     return saved;
 }
+
 
     public List<Complaint> getUserComplaints(Long userId){
         return repo.findByUserId(userId);
