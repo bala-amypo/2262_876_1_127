@@ -14,6 +14,7 @@ public class User{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(hidden = true)
+    @Schema(required = true)
     private Long id;
     @Column(unique=true)
     private String email;
