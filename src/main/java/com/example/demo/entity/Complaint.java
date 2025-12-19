@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Complaint{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(hidden = true)
     private Long id;
     private String title, description, category;
     private int priorityScore;
