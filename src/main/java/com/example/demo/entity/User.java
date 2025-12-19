@@ -15,8 +15,8 @@ public class User{
     @Column(unique=true)
     private String email;
     private String name;
-    @JsonIgnore
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @Column(nullable = false)
     private String password;
 
     public Long getId(){
