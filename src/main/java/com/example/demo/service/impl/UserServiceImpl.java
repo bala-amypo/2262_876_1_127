@@ -17,11 +17,11 @@ public class UserServiceImpl implements UserService{
         return repo.save(user);
     }
     public User loginUser(User user){
-        User dbUser = repo.findByEmail(user.getEmail());
+        User Optional<dbUser> = repo.findByEmail(user.getEmail());
         if(dbUser.isEmpty())
-            throw new RunTimeException("Email not found!");
+            throw new RuntimeException("Email not found!");
         if(!user.password.equals(user.getpassword()))
-            throw new RunTimeException("Invalid Password!");
+            throw new RuntimeException("Invalid Password!");
 
         return user;
     }
