@@ -21,9 +21,9 @@ public class UserServiceImpl implements UserService{
         if(dbUser.isEmpty())
             throw new RuntimeException("Email not found!");
         User existingUser = dbUser.get();
-        if(!existingUserser.password.equals(user.getpassword()))
+        if(!existingUser.getPassword().equals(user.getPassword()))
             throw new RuntimeException("Invalid Password!");
 
-        return user;
+        return exisitingUser;
     }
 }
