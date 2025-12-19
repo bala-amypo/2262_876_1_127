@@ -3,6 +3,7 @@ package com.example.demo.entity;
 import jakarta.persistence.*;
 import io.swagger.v3.oas.annotations.media.Schema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @Entity
@@ -15,13 +16,14 @@ public class User{
     private String email;
     private String name;
     @JsonIgnore
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    public long getId(){
+    public Long getId(){
         return this.id;
     }
 
-    public void setId(long id){
+    public void setId(Long id){
         this.id = id;
     }
 

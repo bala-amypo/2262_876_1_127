@@ -18,7 +18,7 @@ public class ComplaintStatus{
     @JoinColumn(name = "complaint_id")
     private Complaint complaint;
 
-    public long getId(){
+    public Long getId(){
         return this.id;
     }
 
