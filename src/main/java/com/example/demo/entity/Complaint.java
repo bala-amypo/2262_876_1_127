@@ -18,7 +18,6 @@ public class Complaint{
     private LocalDateTime submittedOn;
     @ManyToOne
     @JoinColumn(name = "user_id")
-
     private User user;
 
     public Long getId(){
