@@ -19,8 +19,15 @@ public class ComplaintServiceImpl implements ComplaintService{
     ComplaintStatusRepository statusRepo;
 
     public Complaint submitComplaint(Complaint request){
-        return repo.save(request);
-    }
+
+    Complaint saved = repo.save(request);
+    ComplaintStatus status = new ComplaintStatus();
+    status.setStatus("OPEN");
+    status.setComplaint(saved);
+    statusRepo.save(status);
+    return saved;
+}
+
 
     public List<Complaint> getUserComplaints(Long userId){
         return repo.findByUserId(userId);
