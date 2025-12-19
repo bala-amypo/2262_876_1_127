@@ -14,6 +14,7 @@ public class Complaint{
     private Long id;
     private String title, description, category;
     private int priorityScore;
+    @Schema(hidden = true)
     private LocalDateTime submittedOn;
     @ManyToOne
     @JoinColumn(name = "user_id")
