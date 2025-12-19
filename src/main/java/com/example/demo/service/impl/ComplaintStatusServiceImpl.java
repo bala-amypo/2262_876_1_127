@@ -19,5 +19,8 @@ public class ComplaintStatusServiceImpl implements ComplaintStatusService{
             .orElseThrow(() ->
                 new EntityNotFoundException("ComplaintStatus not found with id: " + id)
             );
-}
+    }
+
+    List<ComplaintStatus> findByComplaintId(Long complaintId){
+    
 }

@@ -7,6 +7,5 @@ import com.example.demo.entity.ComplaintStatus;
 
 @Repository
 public interface ComplaintStatusRepository extends JpaRepository<ComplaintStatus, Long> {
-    
-    
+    List<ComplaintStatus> findByComplaintId(Long complaintId);
 }
