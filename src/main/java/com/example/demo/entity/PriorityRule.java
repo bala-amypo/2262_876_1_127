@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 public class PriorityRule{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     private String category, description;
     private int baseScore;
 
