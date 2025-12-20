@@ -81,7 +81,7 @@ public ComplaintServiceImpl(
     public List<Complaint> getPrioritizedComplaints(){
         return repo.findAll();
     }
-
+@Override
     public void updateComplaintStatus(Long id, String status){
 
     Complaint complaint = repo.findById(id)
