@@ -7,11 +7,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class User {
 
-    // ===== REQUIRED BY TESTS =====
-    public enum Role {
-        USER, ADMIN
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(required = true)
