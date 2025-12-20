@@ -54,6 +54,31 @@ private boolean active = true;
         this.baseScore = baseScore;
     }
 
+public String getRuleName() {
+    return ruleName;
+}
+
+public void setRuleName(String ruleName) {
+    this.ruleName = ruleName;
+}
+
+public int getWeight() {
+    return weight;
+}
+
+public void setWeight(int weight) {
+    this.weight = weight;
+}
+
+public boolean isActive() {
+    return active;
+}
+
+public void setActive(boolean active) {
+    this.active = active;
+}
+
+
     public PriorityRule(String category, String description, int baseScore){
         this.category = category;
         this.description = description;
