@@ -6,4 +6,6 @@ import com.example.demo.entity.PriorityRule;
 public interface PriorityRuleService {
 
     List<PriorityRule> getAllRules();
+    int computePriorityScore(Complaint complaint);
+
 }

@@ -52,4 +52,9 @@ public UserServiceImpl(UserRepository repo, PasswordEncoder encoder) {
 
         return repo.save(user);
     }
+    @Override
+public User findByEmail(String email) {
+    return userRepository.findByEmail(email).orElse(null);
+}
+
 }
