@@ -25,6 +25,7 @@ public class ComplaintServiceImpl implements ComplaintService{
 
 @Override
 public Complaint submitComplaint(Complaint request) {
+    
 
     if (request.getUser() == null || request.getUser().getId() == null) {
         throw new IllegalArgumentException("user.id is required");

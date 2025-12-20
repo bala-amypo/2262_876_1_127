@@ -11,7 +11,12 @@ import com.example.demo.repository.PriorityRuleRepository;
 public class PriorityRuleServiceImpl implements PriorityRuleService{
 
     @Autowired
-    PriorityRuleRepository repo;
+    public PriorityRuleServiceImpl(PriorityRuleRepository repo) {
+        this.repo = repo;
+    }
+    
+    public PriorityRuleServiceImpl() {
+    }
 
     public List<PriorityRule> getAllRules(){
         return repo.findAll();
