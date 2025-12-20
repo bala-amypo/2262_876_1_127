@@ -1,8 +1,12 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import java.util.List;
+import java.util.ArrayList;
+import jakarta.persistence.Transient;
 import io.swagger.v3.oas.annotations.media.Schema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.demo.entity.Complaint;
 
 
 @Entity
@@ -17,6 +21,13 @@ public class PriorityRule{
 private String ruleName;
 private int weight;
 private boolean active = true;
+
+@Transient
+private List<Complaint> complaints = new ArrayList<>();
+
+public List<Complaint> getComplaints() {
+    return complaints;
+}
 
 
     public Long getId(){
