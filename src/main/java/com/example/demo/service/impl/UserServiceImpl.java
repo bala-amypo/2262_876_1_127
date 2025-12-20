@@ -8,18 +8,19 @@ import com.example.demo.entity.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
+@Autowired
+private UserRepository userRepository;
 
 
 public UserServiceImpl(UserRepository repo, PasswordEncoder encoder) {
     this.repo = repo;
 }
 
-    @Autowired
-    private UserRepository repo;
 
     @Override
     public User registerUser(User user) {

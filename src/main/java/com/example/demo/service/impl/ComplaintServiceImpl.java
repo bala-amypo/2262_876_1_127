@@ -17,9 +17,13 @@ import com.example.demo.entity.Complaint;
 import com.example.demo.entity.User;
 import com.example.demo.repository.ComplaintRepository;
 import java.util.List;
+import com.example.demo.repository.ComplaintRepository;
+
 
 @Service
 public class ComplaintServiceImpl implements ComplaintService{
+@Autowired
+private ComplaintRepository complaintRepository;
 
     @Autowired
     ComplaintRepository repo;
