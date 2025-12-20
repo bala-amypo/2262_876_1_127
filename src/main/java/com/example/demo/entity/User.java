@@ -17,7 +17,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    private String fullName;
+    private String fullName,name;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
@@ -32,10 +32,9 @@ public class User {
         }
     }
 
-    // ===== REQUIRED NO-ARG CONSTRUCTOR =====
+
     public User() {}
 
-    // ===== REQUIRED 3-ARG CONSTRUCTOR =====
     public User(String fullName, String email, String password) {
         this.fullName = fullName;
         this.email = email;
@@ -43,7 +42,7 @@ public class User {
         this.role = Role.CUSTOMER;
     }
 
-    // ===== GETTERS =====
+
     public Long getId() {
         return id;
     }
@@ -64,7 +63,7 @@ public class User {
         return role;
     }
 
-    // ===== SETTERS =====
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -75,6 +74,10 @@ public class User {
 
     public void setFullName(String fullName) {
         this.fullName = fullName;
+    }
+
+    public void setName(String name){
+        this.name = name;
     }
 
     public void setPassword(String password) {
