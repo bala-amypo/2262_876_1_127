@@ -28,8 +28,12 @@ private Urgency urgency;
 
 
 public enum Severity {
-    LOW, MEDIUM, HIGH
+    LOW,
+    MEDIUM,
+    HIGH,
+    CRITICAL
 }
+
 
 public enum Urgency {
     LOW,
@@ -38,6 +42,13 @@ public enum Urgency {
     IMMEDIATE
 }
 
+public User getCustomer() {
+    return this.user;
+}
+
+public void setCustomer(User user) {
+    this.user = user;
+}
 
     public Long getId(){
         return this.id;
