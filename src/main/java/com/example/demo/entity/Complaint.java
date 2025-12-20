@@ -55,7 +55,6 @@ public class Complaint {
         submittedOn = LocalDateTime.now();
     }
 
-    // ===== REQUIRED GETTERS / SETTERS =====
 
     public Long getId() { return id; }
 
