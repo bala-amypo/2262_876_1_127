@@ -8,5 +8,6 @@ import com.example.demo.entity.PriorityRule;
 @Repository
 public interface PriorityRuleRepository extends JpaRepository<PriorityRule, Long> {
     
-    
+    List<PriorityRule> findByActiveTrue();
+
 }

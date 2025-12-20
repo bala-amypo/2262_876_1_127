@@ -32,8 +32,12 @@ public enum Severity {
 }
 
 public enum Urgency {
-    LOW, MEDIUM, HIGH
+    LOW,
+    MEDIUM,
+    HIGH,
+    IMMEDIATE
 }
+
 
     public Long getId(){
         return this.id;

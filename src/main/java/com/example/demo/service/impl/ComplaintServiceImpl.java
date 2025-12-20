@@ -79,5 +79,15 @@ public ComplaintServiceImpl(
 
     statusRepo.save(cs);
 }
+
+@Override
+public Complaint submitComplaint(ComplaintRequest request, User user) {
+    Complaint complaint = new Complaint();
+    complaint.setTitle(request.getTitle());
+    complaint.setDescription(request.getDescription());
+    complaint.setUser(user);
+    return repo.save(complaint);
+}
+`
     
 }

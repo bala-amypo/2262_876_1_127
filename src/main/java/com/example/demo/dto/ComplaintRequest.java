@@ -1,5 +1,5 @@
 package com.example.demo.dto;
-
+ import com.example.demo.entity.Complaint;
 public class ComplaintRequest {
 
     private String title;
@@ -38,4 +38,18 @@ public class ComplaintRequest {
     public void setChannel(String channel) {
         this.channel = channel;
     }
+
+   
+
+private Complaint.Severity severity;
+private Complaint.Urgency urgency;
+
+public void setSeverity(Complaint.Severity severity) {
+    this.severity = severity;
+}
+
+public void setUrgency(Complaint.Urgency urgency) {
+    this.urgency = urgency;
+}
+
 }
