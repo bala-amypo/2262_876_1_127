@@ -22,5 +22,9 @@ public class PriorityRuleServiceImpl implements PriorityRuleService {
     public List<PriorityRule> getAllRules() {
         return repo.findAll();
     }
+@Override
+public int computePriorityScore(Complaint complaint) {
+    return 0;
+}
 
 }
