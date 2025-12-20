@@ -21,10 +21,12 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
     public enum Role {
     USER,
     AGENT,
-    ADMIN
+    ADMIN,
+    CUSTOMER
 }
 
 
