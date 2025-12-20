@@ -6,9 +6,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class User {
 
-    public enum Role {
-        CUSTOMER, ADMIN
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +21,9 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+    public enum Role {
+        CUSTOMER, ADMIN
+    }
 
     @PrePersist
     public void prePersist() {
@@ -62,6 +62,8 @@ public class User {
     public Role getRole() {
         return role;
     }
+
+    
 
 
     public void setId(Long id) {
