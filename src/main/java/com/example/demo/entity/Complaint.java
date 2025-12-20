@@ -2,128 +2,80 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
-import io.swagger.v3.oas.annotations.media.Schema;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-public class Complaint{
+public class Complaint {
+
+    public enum Severity {
+        LOW, MEDIUM, HIGH, CRITICAL
+    }
+
+    public enum Urgency {
+        LOW, IMMEDIATE
+    }
+
+    public enum Status {
+        OPEN, IN_PROGRESS, RESOLVED, CLOSED
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(required = true)
     private Long id;
-    private String title, description, category;
+
+    private String title;
+    private String description;
+    private String category;
+
     private int priorityScore;
-    @Schema(hidden = true)
+
+    @Enumerated(EnumType.STRING)
+    private Severity severity;
+
+    @Enumerated(EnumType.STRING)
+    private Urgency urgency;
+
+    @Enumerated(EnumType.STRING)
+    private Status status = Status.OPEN;
+
     private LocalDateTime submittedOn;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
-@Enumerated(EnumType.STRING)
-private Severity severity;
+    @ManyToOne
+    private User customer;
 
-@Enumerated(EnumType.STRING)
-private Urgency urgency;
+    @ManyToOne
+    private User assignedAgent;
 
-
-public enum Severity {
-    LOW, MEDIUM, HIGH
-}
-
-public enum Urgency {
-    LOW, MEDIUM, HIGH
-}
-
-    public Long getId(){
-        return this.id;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-
-    public String getTitle(){
-        return this.title;
-    }
-
-    public void setTitle(String title){
-        this.title = title;
-    }
-
-
-    public String getDescription(){
-        return this.description;
-    }
-
-    public void setDescription(String description){
-        this.description = description;
-    }
-
-
-    public String getCategory(){
-        return this.category;
-    }
-
-    public void setCategory(String category){
-        this.category = category;
-    }
-
-    public int getPriorityScore(){
-        return this.priorityScore;
-    }
-
-    public void setPriorityScore(int priorityScore){
-        this.priorityScore = priorityScore;
-    }
-
-    public LocalDateTime getSubmittedOn(){
-        return this.submittedOn;
-    }
-
-    public void setSubmittedOn(LocalDateTime submittedOn){
-        this.submittedOn = submittedOn;
-    }
-
-    public User getUser(){
-        return this.user;
-    }
-
-    public void setUser(User user){
-        this.user = user;
-    }
-
-    public Severity getSeverity() {
-    return severity;
-}
-
-public void setSeverity(Severity severity) {
-    this.severity = severity;
-}
-
-public Urgency getUrgency() {
-    return urgency;
-}
-
-public void setUrgency(Urgency urgency) {
-    this.urgency = urgency;
-}
-
+    @ManyToMany
+    private List<PriorityRule> priorityRules = new ArrayList<>();
 
     @PrePersist
-    public void onCreate() {
-    this.submittedOn = LocalDateTime.now();
-   }
-    public Complaint(String title, String description, String category, int priorityScore, User user){
-        this.title = title;
-        this.description = description;
-        this.category = category;
-        this.priorityScore = priorityScore;
-        this.user = user;
+    void onCreate() {
+        submittedOn = LocalDateTime.now();
     }
 
-    public Complaint(){
+    // ===== REQUIRED GETTERS / SETTERS =====
 
-    }
+    public Long getId() { return id; }
+
+    public User getCustomer() { return customer; }
+    public void setCustomer(User customer) { this.customer = customer; }
+
+    public User getAssignedAgent() { return assignedAgent; }
+    public void setAssignedAgent(User agent) { this.assignedAgent = agent; }
+
+    public Severity getSeverity() { return severity; }
+    public void setSeverity(Severity severity) { this.severity = severity; }
+
+    public Urgency getUrgency() { return urgency; }
+    public void setUrgency(Urgency urgency) { this.urgency = urgency; }
+
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
+
+    public List<PriorityRule> getPriorityRules() { return priorityRules; }
+
+    public int getPriorityScore() { return priorityScore; }
+    public void setPriorityScore(int score) { this.priorityScore = score; }
 }
