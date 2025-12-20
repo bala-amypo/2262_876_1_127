@@ -1,37 +1,48 @@
 package com.example.demo.service.impl;
 
-import org.springframework.beans.factory.annotation.*;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.stereotype.*;
-import java.util.*;
-import com.example.demo.entity.User;
-import com.example.demo.service.UserService;
-import com.example.demo.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.Optional;
 
+import com.example.demo.entity.User;
+import com.example.demo.repository.UserRepository;
+import com.example.demo.service.UserService;
 
 @Service
-public class UserServiceImpl implements UserService{
-    @Autowired
-    UserRepository repo;
+public class UserServiceImpl implements UserService {
 
-    public User registerUser(User user){
+    @Autowired
+    private UserRepository repo;
+
+    @Override
+    public User registerUser(User user) {
         return repo.save(user);
     }
-    public User loginUser(User user){
+
+    @Override
+    public User loginUser(User user) {
         Optional<User> dbUser = repo.findByEmail(user.getEmail());
-        if(dbUser.isEmpty())
+        if (dbUser.isEmpty()) {
             throw new RuntimeException("Email not found!");
+        }
+
         User existingUser = dbUser.get();
-        if(!existingUser.getPassword().equals(user.getPassword()))
+        if (!existingUser.getPassword().equals(user.getPassword())) {
             throw new RuntimeException("Invalid Password!");
+        }
 
         return existingUser;
     }
-    @Override
-public User registerCustomer(String name, String email, String password) {
-    User user = new User(name, email, password);
-    user.setRole(User.Role.CUSTOMER);
-    return repo.save(user);
-}
 
+    @Override
+    public User registerCustomer(String name, String email, String password) {
+        User user = new User();
+        user.setName(name);
+        user.setFullName(name); 
+        user.setEmail(email);
+        user.setPassword(password);
+        user.setRole(User.Role.CUSTOMER);
+
+        return repo.save(user);
+    }
 }
