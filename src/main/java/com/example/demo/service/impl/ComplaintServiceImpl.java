@@ -12,6 +12,11 @@ import com.example.demo.entity.ComplaintStatus;
 import java.time.LocalDateTime;
 import com.example.demo.entity.User;
 import com.example.demo.service.PriorityRuleService;
+import com.example.demo.dto.ComplaintRequest;
+import com.example.demo.entity.Complaint;
+import com.example.demo.entity.User;
+import com.example.demo.repository.ComplaintRepository;
+import java.util.List;
 
 @Service
 public class ComplaintServiceImpl implements ComplaintService{
