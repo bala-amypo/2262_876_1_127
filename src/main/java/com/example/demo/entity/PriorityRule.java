@@ -14,6 +14,11 @@ public class PriorityRule{
     private String category, description;
     private int baseScore;
 
+private String ruleName;
+private int weight;
+private boolean active = true;
+
+
     public Long getId(){
         return this.id;
     }

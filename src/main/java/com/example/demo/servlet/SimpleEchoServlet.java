@@ -1,11 +1,14 @@
 package com.example.demo.servlet;
 
 public class SimpleEchoServlet{
-    public void doGet(
-        org.springframework.mock.web.MockHttpServletRequest request,
-        org.springframework.mock.web.MockHttpServletResponse response
-) {
-    response.setStatus(200);
+    import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public void doGet(HttpServletRequest request, HttpServletResponse response) {
+    try {
+        response.setStatus(HttpServletResponse.SC_OK);
+    } catch (Exception e) {
+    }
 }
 
 }

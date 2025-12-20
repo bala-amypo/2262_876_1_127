@@ -25,6 +25,7 @@ public UserServiceImpl(UserRepository repo, PasswordEncoder encoder) {
         return repo.save(user);
     }
 
+
     @Override
     public User loginUser(User user) {
         Optional<User> dbUser = repo.findByEmail(user.getEmail());

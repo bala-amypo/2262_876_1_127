@@ -18,6 +18,11 @@ public class PriorityRuleServiceImpl implements PriorityRuleService {
         this.repo = repo;
     }
 
+@Override
+public List<PriorityRule> getAllRules() {
+    return repo.findAll();
+}
+
     public PriorityRuleServiceImpl() {
     }
 
