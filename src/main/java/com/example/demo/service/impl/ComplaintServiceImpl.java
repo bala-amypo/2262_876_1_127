@@ -11,6 +11,7 @@ import com.example.demo.entity.Complaint;
 import com.example.demo.entity.ComplaintStatus;
 import java.time.LocalDateTime;
 import com.example.demo.entity.User;
+import com.example.demo.service.PriorityRuleService;
 
 @Service
 public class ComplaintServiceImpl implements ComplaintService{
@@ -49,7 +50,16 @@ public Complaint submitComplaint(Complaint request) {
 }
 
 
-
+public ComplaintServiceImpl(
+        ComplaintRepository repo,
+        ComplaintStatusRepository statusRepo,
+        UserRepository userRepo,
+        PriorityRuleService priorityRuleService
+) {
+    this.repo = repo;
+    this.statusRepo = statusRepo;
+    this.userRepo = userRepo;
+}
     public List<Complaint> getUserComplaints(Long userId){
         return repo.findByUserId(userId);
     }

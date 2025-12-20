@@ -25,4 +25,17 @@ public class PriorityRuleServiceImpl implements PriorityRuleService {
     public List<PriorityRule> getAllRules() {
         return repo.findAll();
     }
+
+    public void setRuleName(String ruleName) {
+    this.ruleName = ruleName;
+}
+
+public void setWeight(int weight) {
+    this.weight = weight;
+}
+
+public void setActive(boolean active) {
+    this.active = active;
+}
+
 }
