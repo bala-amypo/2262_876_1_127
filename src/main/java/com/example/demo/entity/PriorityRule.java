@@ -1,39 +1,61 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
-public class PriorityRule {
-
+public class PriorityRule{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Schema(hidden = true)
     private Long id;
+    private String category, description;
+    private int baseScore;
 
-    private String ruleName;
-    private int weight;
-    private boolean active;
-
-    public String getRuleName() {
-        return ruleName;
+    public Long getId(){
+        return this.id;
     }
 
-    public void setRuleName(String ruleName) {
-        this.ruleName = ruleName;
+    public void setId(Long id){
+        this.id = id;
     }
 
-    public int getWeight() {
-        return weight;
+
+    public String getCategory(){
+        return this.category;
     }
 
-    public void setWeight(int weight) {
-        this.weight = weight;
+    public void setCategory(String category){
+        this.category = category;
     }
 
-    public boolean isActive() {
-        return active;
+
+    public String getDescription(){
+        return this.description;
     }
 
-    public void setActive(boolean active) {
-        this.active = active;
+    public void setDescription(String description){
+        this.description = description;
+    }
+
+
+    public int getBaseScore(){
+        return this.baseScore;
+    }
+
+    public void setBaseScore(int baseScore){
+        this.baseScore = baseScore;
+    }
+
+    public PriorityRule(String category, String description, int baseScore){
+        this.category = category;
+        this.description = description;
+        this.baseScore = baseScore;
+    }
+    
+    public PriorityRule(){
+        this.baseScore = 10;
     }
 }
