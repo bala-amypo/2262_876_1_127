@@ -23,8 +23,4 @@ public class PriorityRuleServiceImpl implements PriorityRuleService {
         return repo.findAll();
     }
 
-    @Override
-    public List<PriorityRule> getActiveRules() {
-        return repo.findByActiveTrue();
-    }
 }

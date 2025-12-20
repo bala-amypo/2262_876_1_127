@@ -6,6 +6,4 @@ import com.example.demo.entity.PriorityRule;
 public interface PriorityRuleService {
 
     List<PriorityRule> getAllRules();
-
-    List<PriorityRule> getActiveRules();
 }
