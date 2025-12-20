@@ -14,7 +14,7 @@ import com.example.demo.repository.UserRepository;
 public class UserServiceImpl implements UserService {
 
 @Autowired
-private UserRepository userRepository;
+private UserRepository repo;
 
 
 public UserServiceImpl(UserRepository repo, PasswordEncoder encoder) {
