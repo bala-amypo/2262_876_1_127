@@ -21,6 +21,8 @@ public UserServiceImpl(UserRepository repo, PasswordEncoder encoder) {
     this.repo = repo;
 }
 
+@Autowired
+private UserRepository userRepository;
 
     @Override
     public User registerUser(User user) {
