@@ -88,18 +88,18 @@ public ComplaintServiceImpl(
 
     statusRepo.save(cs);
 }
+@Override
+public Complaint submitComplaint(Complaint complaint) {
+    return repo.save(complaint);
+}
 
 @Override
 public Complaint submitComplaint(ComplaintRequest request, User user) {
     Complaint complaint = new Complaint();
+    complaint.setUser(user);
     complaint.setTitle(request.getTitle());
     complaint.setDescription(request.getDescription());
-    complaint.setUser(user);
     return repo.save(complaint);
-}
-@Override
-public List<Complaint> getComplaintsForUser(User user) {
-    return complaintRepository.findByCustomer(user);
 }
 
     
