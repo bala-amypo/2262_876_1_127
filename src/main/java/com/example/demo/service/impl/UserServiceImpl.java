@@ -27,4 +27,11 @@ public class UserServiceImpl implements UserService{
 
         return existingUser;
     }
+    @Override
+public User registerCustomer(String name, String email, String password) {
+    User user = new User(name, email, password);
+    user.setRole(User.Role.CUSTOMER);
+    return repo.save(user);
+}
+
 }

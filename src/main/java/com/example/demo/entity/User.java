@@ -31,6 +31,9 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    public enum Role {
+    USER, ADMIN, CUSTOMER
+}
 
     public Long getId() {
         return this.id;
@@ -79,6 +82,13 @@ public class User {
     public void setRole(Role role) {
         this.role = role;
     }
+
+    @PrePersist
+public void setDefaultRole() {
+    if (this.role == null) {
+        this.role = Role.CUSTOMER;
+    }
+}
 
     public User(String name, String email, String password) {
         this.name = name;
