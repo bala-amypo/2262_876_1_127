@@ -13,6 +13,7 @@ import com.example.demo.entity.User;
 public interface ComplaintService{
     public Complaint submitComplaint(Complaint request);
     public List<Complaint> getUserComplaints(Long userId);
+    public List<Complaint> getComplaintsForUSer(Long userId);
     public List<Complaint> getPrioritizedComplaints();
     public void updateComplaintStatus(Long id, String status);
 
