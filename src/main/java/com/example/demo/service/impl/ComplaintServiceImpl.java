@@ -88,7 +88,6 @@ public Complaint submitComplaint(ComplaintRequest request, User user) {
     complaint.setUser(user);
     return repo.save(complaint);
 }
-`
 @Override
 public List<Complaint> getComplaintsForUser(User user) {
     return complaintRepository.findByCustomer(user);
