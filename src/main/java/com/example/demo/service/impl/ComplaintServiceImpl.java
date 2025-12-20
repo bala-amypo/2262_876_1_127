@@ -88,10 +88,7 @@ public ComplaintServiceImpl(
 
     statusRepo.save(cs);
 }
-@Override
-public Complaint submitComplaint(Complaint complaint) {
-    return repo.save(complaint);
-}
+
 
 @Override
 public Complaint submitComplaint(ComplaintRequest request, User user) {

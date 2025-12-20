@@ -15,7 +15,6 @@ public interface ComplaintService{
     public List<Complaint> getUserComplaints(Long userId);
     public List<Complaint> getPrioritizedComplaints();
     public void updateComplaintStatus(Long id, String status);
-    Complaint submitComplaint(Complaint complaint);
 
 Complaint submitComplaint(ComplaintRequest request, User user);
 
