@@ -12,7 +12,7 @@ public class Complaint{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(required = true)
     private Long id;
-    private String title, description, category;
+    private String title, description, category, status;
     private int priorityScore;
     @Schema(hidden = true)
     private LocalDateTime submittedOn;
@@ -124,6 +124,9 @@ public Urgency getUrgency() {
 public void setUrgency(Urgency urgency) {
     this.urgency = urgency;
 }
+public String getStatus() {
+    return status;
+}
 
 
     @PrePersist
@@ -141,4 +144,14 @@ public void setUrgency(Urgency urgency) {
     public Complaint(){
 
     }
+    private String channel;
+
+public String getChannel() {
+    return channel;
+}
+
+public void setChannel(String channel) {
+    this.channel = channel;
+}
+
 }

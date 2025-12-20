@@ -52,6 +52,13 @@ public void setUrgency(Complaint.Urgency urgency) {
     this.urgency = urgency;
 }
 
+public Complaint.Severity getSeverity() {
+    return severity;
+}
+
+public Complaint.Urgency getUrgency() {
+    return urgency;
+}
 
 
 }
