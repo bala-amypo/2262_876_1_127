@@ -69,13 +69,15 @@ public ComplaintServiceImpl(
     this.statusRepo = statusRepo;
     this.userRepo = userRepo;
 }
+@Override
     public List<Complaint> getUserComplaints(Long userId){
         return repo.findByUserId(userId);
     }
+    @Override
     public List<Complaint> getComplaintsForUser(Long userId){
         return repo.findByUserId(userId);
     }
-
+@Override
     public List<Complaint> getPrioritizedComplaints(){
         return repo.findAll();
     }
