@@ -22,8 +22,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
     public enum Role {
-        CUSTOMER, ADMIN
-    }
+    USER,
+    AGENT,
+    ADMIN
+}
+
 
     @PrePersist
     public void prePersist() {

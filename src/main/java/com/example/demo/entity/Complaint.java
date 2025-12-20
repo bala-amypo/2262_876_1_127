@@ -1,9 +1,13 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+java.util.*;
 import java.time.LocalDateTime;
 import io.swagger.v3.oas.annotations.media.Schema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.demo.entity.PriorityRule;
+import com.example.demo.entity.User;
+
 
 
 @Entity
@@ -20,11 +24,29 @@ public class Complaint{
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+@Transient
+private List<PriorityRule> priorityRules = new ArrayList<>();
+
+public List<PriorityRule> getPriorityRules() {
+    return priorityRules;
+}
+
+
 @Enumerated(EnumType.STRING)
 private Severity severity;
 
 @Enumerated(EnumType.STRING)
 private Urgency urgency;
+
+private User assignedAgent;
+
+public void setAssignedAgent(User agent) {
+    this.assignedAgent = agent;
+}
+
+public User getAssignedAgent() {
+    return assignedAgent;
+}
 
 
 public enum Severity {
