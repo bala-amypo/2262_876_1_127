@@ -14,10 +14,8 @@ public class PriorityRule {
     private String category;
     private String description;
 
-    // already existed
     private int baseScore;
 
-    // REQUIRED BY TESTS
     private String ruleName;
     private int weight;
     private boolean active = true;
@@ -32,7 +30,6 @@ public class PriorityRule {
         this.baseScore = baseScore;
     }
 
-    // ===== GETTERS & SETTERS =====
 
     public Long getId() {
         return id;

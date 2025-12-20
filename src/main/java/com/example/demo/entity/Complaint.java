@@ -20,6 +20,20 @@ public class Complaint{
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+@Enumerated(EnumType.STRING)
+private Severity severity;
+
+@Enumerated(EnumType.STRING)
+private Urgency urgency;
+
+
+public enum Severity {
+    LOW, MEDIUM, HIGH
+}
+
+public enum Urgency {
+    LOW, MEDIUM, HIGH
+}
 
     public Long getId(){
         return this.id;
@@ -79,6 +93,23 @@ public class Complaint{
     public void setUser(User user){
         this.user = user;
     }
+
+    public Severity getSeverity() {
+    return severity;
+}
+
+public void setSeverity(Severity severity) {
+    this.severity = severity;
+}
+
+public Urgency getUrgency() {
+    return urgency;
+}
+
+public void setUrgency(Urgency urgency) {
+    this.urgency = urgency;
+}
+
 
     @PrePersist
     public void onCreate() {
