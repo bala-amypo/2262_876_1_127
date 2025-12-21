@@ -16,6 +16,7 @@ private UserRepository repo;
 
     @Override
     public User registerUser(User user) {
+        user.setId(null);
     try {
         return repo.save(user);
     } catch (Exception e) {
