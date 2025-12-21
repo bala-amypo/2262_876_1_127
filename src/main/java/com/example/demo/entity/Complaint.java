@@ -24,54 +24,6 @@ public class Complaint{
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-@Transient
-private List<PriorityRule> priorityRules = new ArrayList<>();
-
-public List<PriorityRule> getPriorityRules() {
-    return priorityRules;
-}
-
-
-@Enumerated(EnumType.STRING)
-private Severity severity;
-
-@Enumerated(EnumType.STRING)
-private Urgency urgency;
-
-private User assignedAgent;
-
-public void setAssignedAgent(User agent) {
-    this.assignedAgent = agent;
-}
-
-public User getAssignedAgent() {
-    return assignedAgent;
-}
-
-
-public enum Severity {
-    LOW,
-    MEDIUM,
-    HIGH,
-    CRITICAL
-}
-
-
-public enum Urgency {
-    LOW,
-    MEDIUM,
-    HIGH,
-    IMMEDIATE
-}
-
-public User getCustomer() {
-    return this.user;
-}
-
-public void setCustomer(User user) {
-    this.user = user;
-}
-
     public Long getId(){
         return this.id;
     }
@@ -130,31 +82,17 @@ public void setCustomer(User user) {
     public void setUser(User user){
         this.user = user;
     }
-
-    public Severity getSeverity() {
-    return severity;
-}
-
-public void setSeverity(Severity severity) {
-    this.severity = severity;
-}
-
-public Urgency getUrgency() {
-    return urgency;
-}
-
-public void setUrgency(Urgency urgency) {
-    this.urgency = urgency;
-}
-public String getStatus() {
+    
+    public String getStatus() {
     return status;
-}
+    }
 
 
     @PrePersist
     public void onCreate() {
     this.submittedOn = LocalDateTime.now();
    }
+   
     public Complaint(String title, String description, String category, int priorityScore, User user){
         this.title = title;
         this.description = description;
@@ -166,14 +104,5 @@ public String getStatus() {
     public Complaint(){
 
     }
-    private String channel;
-
-public String getChannel() {
-    return channel;
-}
-
-public void setChannel(String channel) {
-    this.channel = channel;
-}
 
 }
