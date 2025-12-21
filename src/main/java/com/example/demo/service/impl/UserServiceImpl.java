@@ -14,10 +14,6 @@ public class UserServiceImpl implements UserService {
 @Autowired
 private UserRepository repo;
 
-
-@Autowired
-private UserRepository userRepository;
-
     @Override
     public User registerUser(User user) {
         return repo.save(user);
