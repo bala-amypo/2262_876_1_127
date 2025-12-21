@@ -14,11 +14,12 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    private String fullName,name;
+    private String name;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
+    @Schema(hidden=true)
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -40,8 +41,8 @@ public class User {
 
     public User() {}
 
-    public User(String fullName, String email, String password) {
-        this.fullName = fullName;
+    public User(String name, String email, String password) {
+        this.name = name;
         this.email = email;
         this.password = password;
         this.role = Role.CUSTOMER;
@@ -56,8 +57,8 @@ public class User {
         return email;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getName() {
+        return name;
     }
 
     public String getPassword() {
@@ -79,8 +80,8 @@ public class User {
         this.email = email;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFullName(String name) {
+        this.name = name;
     }
 
     public void setName(String name){
