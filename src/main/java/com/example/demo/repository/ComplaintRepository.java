@@ -10,7 +10,6 @@ import java.util.List;
 
 @Repository
 public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
-    List<Complaint> findById(Long userId);
     List<Complaint> findByUser(User user);
     List<Complaint> findByUserId(Long userId);
 }
