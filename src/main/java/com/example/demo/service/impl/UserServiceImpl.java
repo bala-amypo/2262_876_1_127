@@ -16,13 +16,13 @@ private UserRepository repo;
 
     @Override
     public User registerUser(User user) {
-        
-        try{
-        User newUser = repo.save(user);
-        }
-        catch(Exception e){
-        
+    try {
+        return repo.save(user);
+    } catch (Exception e) {
+        throw new RuntimeException("This Email has already been registered");
     }
+}
+
 
 
     @Override
