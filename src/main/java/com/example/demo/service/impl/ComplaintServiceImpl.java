@@ -22,12 +22,10 @@ import com.example.demo.repository.ComplaintRepository;
 
 @Service
 public class ComplaintServiceImpl implements ComplaintService{
-@Autowired
-private ComplaintRepository complaintRepository;
 
     @Autowired
     ComplaintRepository repo;
-    
+
     @Autowired
     ComplaintStatusRepository statusRepo;
 
@@ -59,30 +57,17 @@ public Complaint submitComplaint(Complaint request) {
     return saved;
 }
 
-
-public ComplaintServiceImpl(
-        ComplaintRepository repo,
-        ComplaintStatusRepository statusRepo,
-        UserRepository userRepo,
-        PriorityRuleService priorityRuleService
-) {
-    this.repo = repo;
-    this.statusRepo = statusRepo;
-    this.userRepo = userRepo;
-}
-@Override
+    @Override
     public List<Complaint> getUserComplaints(Long userId){
         return repo.findByUserId(userId);
     }
+
     @Override
-    public List<Complaint> getComplaintsForUser(Long userId){
-        return repo.findByUserId(userId);
-    }
-@Override
     public List<Complaint> getPrioritizedComplaints(){
         return repo.findAll();
     }
-@Override
+
+    @Override
     public void updateComplaintStatus(Long id, String status){
 
     Complaint complaint = repo.findById(id)
@@ -94,16 +79,5 @@ public ComplaintServiceImpl(
 
     statusRepo.save(cs);
 }
-
-
-@Override
-public Complaint submitComplaint(ComplaintRequest request, User user) {
-    Complaint complaint = new Complaint();
-    complaint.setUser(user);
-    complaint.setTitle(request.getTitle());
-    complaint.setDescription(request.getDescription());
-    return repo.save(complaint);
-}
-
     
 }
