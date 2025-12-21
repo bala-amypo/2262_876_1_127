@@ -27,7 +27,7 @@ public class ComplaintServiceImpl implements ComplaintService{
     UserRepository userRepo;
 
 @Override
- public Complaint submitComplaint(Complaint request) {
+public Complaint submitComplaint(Complaint request) {
 
     if (request.getUser() == null || request.getUser().getId() == null) {
         throw new IllegalArgumentException("user.id is required");
@@ -36,7 +36,7 @@ public class ComplaintServiceImpl implements ComplaintService{
     request.setId(null);
 
     Long userId = request.getUser().getId();
-    User user = userRepo.findByUserId(userId)
+    User user = userRepo.findById(userId)
         .orElseThrow(() -> new RuntimeException("User not found"));
 
     request.setUser(user);
