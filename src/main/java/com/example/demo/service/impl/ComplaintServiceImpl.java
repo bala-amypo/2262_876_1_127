@@ -36,7 +36,7 @@ public class ComplaintServiceImpl implements ComplaintService{
     request.setId(null);
 
     Long userId = request.getUser().getId();
-    User user = userRepo.findById(userId)
+    User user = userRepo.findByUserId(userId)
         .orElseThrow(() -> new RuntimeException("User not found"));
 
     request.setUser(user);
