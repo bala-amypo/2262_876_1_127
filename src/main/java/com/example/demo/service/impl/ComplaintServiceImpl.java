@@ -13,11 +13,6 @@ import java.time.LocalDateTime;
 import com.example.demo.entity.User;
 import com.example.demo.service.PriorityRuleService;
 import com.example.demo.dto.ComplaintRequest;
-import com.example.demo.entity.Complaint;
-import com.example.demo.entity.User;
-import com.example.demo.repository.ComplaintRepository;
-
-
 
 
 @Service
@@ -69,7 +64,6 @@ public Complaint submitComplaint(Complaint request) {
 
     @Override
     public void updateComplaintStatus(Long id, String status){
-
     Complaint complaint = repo.findById(id)
         .orElseThrow(() -> new RuntimeException("Complaint not found"));
 
