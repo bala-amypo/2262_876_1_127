@@ -14,7 +14,6 @@ import com.example.demo.entity.User;
 import com.example.demo.service.PriorityRuleService;
 import com.example.demo.dto.ComplaintRequest;
 
-
 @Service
 public class ComplaintServiceImpl implements ComplaintService{
 
@@ -28,8 +27,7 @@ public class ComplaintServiceImpl implements ComplaintService{
     UserRepository userRepo;
 
 @Override
-public Complaint submitComplaint(Complaint request) {
-    
+ public Complaint submitComplaint(Complaint request) {
 
     if (request.getUser() == null || request.getUser().getId() == null) {
         throw new IllegalArgumentException("user.id is required");
