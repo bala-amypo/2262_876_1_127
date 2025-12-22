@@ -1,66 +1,60 @@
-package com.example.demo.entity;
-
-import jakarta.persistence.*;
-import java.util.*;
-import io.swagger.v3.oas.annotations.media.Schema;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.example.demo.entity.Complaint;
-
-
 @Entity
-public class PriorityRule{
+public class PriorityRule {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(hidden = true)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private String category, description, rulename;
-    private int baseScore, weight;
-    boolean active;
 
+    private String category;
+    private String description;
+    private String rulename;
 
-    public Long getId(){
-        return this.id;
+    private int baseScore;
+    private int weight;
+
+    @Column(nullable = false)
+    private boolean active;
+
+    @PrePersist
+    public void onCreate() {
+        this.active = true;
+        if (this.weight == 0) {
+            this.weight = 1;
+        }
     }
 
-    public void setId(Long id){
-        this.id = id;
-    }
+    public Long getId() { return id; }
 
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
 
-    public String getCategory(){
-        return this.category;
-    }
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
 
-    public void setCategory(String category){
-        this.category = category;
-    }
+    public String getRulename() { return rulename; }
+    public void setRulename(String rulename) { this.rulename = rulename; }
 
+    public int getBaseScore() { return baseScore; }
+    public void setBaseScore(int baseScore) { this.baseScore = baseScore; }
 
-    public String getDescription(){
-        return this.description;
-    }
+    public int getWeight() { return weight; }
+    public void setWeight(int weight) { this.weight = weight; }
 
-    public void setDescription(String description){
-        this.description = description;
-    }
+    public boolean isActive() { return active; }
+    public void setActive(boolean active) { this.active = active; }
 
-
-    public int getBaseScore(){
-        return this.baseScore;
-    }
-
-    public void setBaseScore(int baseScore){
-        this.baseScore = baseScore;
-    }
-
-    public PriorityRule(String category, String description, int baseScore){
-        this.category = category;
-        this.description = description;
-        this.baseScore = baseScore;
-    }
-    
-    public PriorityRule(){
+    public PriorityRule() {
         this.baseScore = 10;
     }
 
+    public PriorityRule(String category, String description,
+                        String rulename, int baseScore, int weight) {
+        this.category = category;
+        this.description = description;
+        this.rulename = rulename;
+        this.baseScore = baseScore;
+        this.weight = weight;
+        this.active = true;
+    }
 }

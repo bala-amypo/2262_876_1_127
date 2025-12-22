@@ -58,6 +58,9 @@ public class Complaint {
         if (this.severity == null) {
             this.severity = Severity.LOW;
         }
+        if(this.urgency == null){
+            this.urgency = Urgency.LOW;
+        }
     }
 
     public Long getId() { return id; }
@@ -82,18 +85,23 @@ public class Complaint {
     public Severity getSeverity() { return severity; }
     public void setSeverity(Severity severity) { this.severity = severity; }
 
+    public Urgency getUrgency() { return urgency; }
+    public void setUrgency(Urgency urgency) { this.urgency = urgency; }
+ 
+
     public User getUser() { return user; }
     public void setUser(User user) { this.user = user; }
 
     public Complaint() {}
 
     public Complaint(String title, String description, String category,
-                     int priorityScore, Severity severity, User user) {
+                     int priorityScore, Severity severity, User user, Urgency urgency) {
         this.title = title;
         this.description = description;
         this.category = category;
         this.priorityScore = priorityScore;
         this.severity = severity;
+        this.urgency = urgency;
         this.user = user;
     }
 }
