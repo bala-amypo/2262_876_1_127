@@ -10,13 +10,29 @@ import com.example.demo.repository.PriorityRuleRepository;
 import com.example.demo.service.PriorityRuleService;
 
 @Service
-public class PriorityRuleServiceImpl implements PriorityRuleService {
+public class ComplaintServiceImpl implements ComplaintService {
 
     @Autowired
-    private PriorityRuleRepository repo;
+    private ComplaintRepository complaintRepo;
+
+    @Autowired
+    private PriorityRuleRepository priorityRuleRepo;
 
     @Override
-    public List<PriorityRule> getAllRules() {
-        return repo.findAll();
+    public Complaint submitComplaint(Complaint request) {
+
+        Complaint saved = complaintRepo.save(request);
+        if (priorityRuleRepo.count() == 0) {
+
+            PriorityRule rule = new PriorityRule();
+            rule.setCategory(saved.getCategory());
+            rule.setDescription("Auto-created rule from complaint submission");
+            rule.setBaseScore(10);
+
+            priorityRuleRepo.save(rule);
+        }
+
+        return saved;
     }
 }
+
