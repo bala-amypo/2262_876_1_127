@@ -5,11 +5,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import com.example.demo.dto.ComplaintRequest;
 import com.example.demo.entity.Complaint;
 import com.example.demo.entity.ComplaintStatus;
 import com.example.demo.entity.PriorityRule;
-import com.example.demo.entity.User;
 import com.example.demo.repository.ComplaintRepository;
 import com.example.demo.repository.ComplaintStatusRepository;
 import com.example.demo.repository.PriorityRuleRepository;
@@ -37,7 +35,7 @@ public class ComplaintServiceImpl implements ComplaintService {
         // save complaint
         Complaint saved = repo.save(request);
 
-        // auto-create ONE priority rule if none exist
+        // 🔥 AUTO-GENERATE rule if none exist
         if (priorityRuleRepo.count() == 0) {
 
             PriorityRule rule = new PriorityRule();
