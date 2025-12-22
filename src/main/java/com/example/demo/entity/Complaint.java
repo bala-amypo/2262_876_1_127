@@ -1,124 +1,94 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
-import java.util.*;
 import java.time.LocalDateTime;
 import io.swagger.v3.oas.annotations.media.Schema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.example.demo.entity.PriorityRule;
-import com.example.demo.entity.User;
-
-
 
 @Entity
-public class Complaint{
+public class Complaint {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Schema(required = true)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
-    private String title, description, category, status;
+
+    private String title;
+    private String description;
+    private String category;
+
     private int priorityScore;
-    @Schema(hidden = true)
+
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    @JsonIgnore
     private LocalDateTime submittedOn;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Status status;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Severity severity;
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Severity severity;
 
-    enum status{
-    NEW,
-    OPEN, IN_PROGRESS, RESOLVED
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    public enum Status {
+        NEW, OPEN, IN_PROGRESS, RESOLVED
     }
 
-    enum severity{
+    public enum Severity {
         LOW, MEDIUM, HIGH, CRITICAL
     }
 
-    public Long getId(){
-        return this.id;
-    }
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
-
-    public String getTitle(){
-        return this.title;
-    }
-
-    public void setTitle(String title){
-        this.title = title;
-    }
-
-
-    public String getDescription(){
-        return this.description;
-    }
-
-    public void setDescription(String description){
-        this.description = description;
-    }
-
-
-    public String getCategory(){
-        return this.category;
-    }
-
-    public void setCategory(String category){
-        this.category = category;
-    }
-
-    public int getPriorityScore(){
-        return this.priorityScore;
-    }
-
-    public void setPriorityScore(int priorityScore){
-        this.priorityScore = priorityScore;
-    }
-
-    public LocalDateTime getSubmittedOn(){
-        return this.submittedOn;
-    }
-
-    public void setSubmittedOn(LocalDateTime submittedOn){
-        this.submittedOn = submittedOn;
-    }
-
-    public User getUser(){
-        return this.user;
-    }
-
-    public void setUser(User user){
-        this.user = user;
-    }
-    
-    public String getStatus() {
-    return status;
-    }
-
-
     @PrePersist
     public void onCreate() {
-    this.submittedOn = LocalDateTime.now();
-   }
-   
-    public Complaint(String title, String description, String category, int priorityScore, User user){
+        this.submittedOn = LocalDateTime.now();
+        this.status = Status.NEW;
+        if (this.severity == null) {
+            this.severity = Severity.LOW;
+        }
+    }
+
+    public Long getId() { return id; }
+
+    public String getTitle() { return title; }
+    public void setTitle(String title) { this.title = title; }
+
+    public String getDescription() { return description; }
+    public void setDescription(String description) { this.description = description; }
+
+    public String getCategory() { return category; }
+    public void setCategory(String category) { this.category = category; }
+
+    public int getPriorityScore() { return priorityScore; }
+    public void setPriorityScore(int priorityScore) { this.priorityScore = priorityScore; }
+
+    public LocalDateTime getSubmittedOn() { return submittedOn; }
+
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
+
+    public Severity getSeverity() { return severity; }
+    public void setSeverity(Severity severity) { this.severity = severity; }
+
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
+
+    public Complaint() {}
+
+    public Complaint(String title, String description, String category,
+                     int priorityScore, Severity severity, User user) {
         this.title = title;
         this.description = description;
         this.category = category;
         this.priorityScore = priorityScore;
+        this.severity = severity;
         this.user = user;
     }
-
-    public Complaint(){
-
-    }
-
 }
