@@ -23,6 +23,10 @@ public class Complaint{
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
+    
+    enum Role role{
+
+    }
 
     public Long getId(){
         return this.id;
