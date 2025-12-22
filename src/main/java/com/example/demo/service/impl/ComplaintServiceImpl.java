@@ -29,25 +29,21 @@ public class ComplaintServiceImpl implements ComplaintService{
 @Override
 public Complaint submitComplaint(Complaint request) {
 
-    if (request.getUser() == null || request.getUser().getId() == null) {
-        throw new IllegalArgumentException("user.id is required");
+    Complaint saved = complaintRepo.save(request);
+
+    if (priorityRuleRepo.count() == 0) {
+
+        PriorityRule rule = new PriorityRule();
+        rule.setCategory(saved.getCategory() != null ? saved.getCategory() : "GENERAL");
+        rule.setDescription("Auto-generated rule from complaint submission");
+        rule.setBaseScore(10);
+
+        priorityRuleRepo.save(rule);
     }
-
-
-    Long userId = request.getUser().getId();
-    User user = userRepo.findById(userId)
-        .orElseThrow(() -> new RuntimeException("User not found"));
-
-    request.setUser(user);
-
-    Complaint saved = repo.save(request);
-    ComplaintStatus status = new ComplaintStatus();
-    status.setStatus("OPEN");
-    status.setComplaint(saved);
-    statusRepo.save(status);
 
     return saved;
 }
+
 
     @Override
     public List<Complaint> getUserComplaints(Long userId){
