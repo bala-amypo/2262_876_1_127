@@ -23,9 +23,21 @@ public class Complaint{
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-    
-    enum Role role{
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Status status;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Severity severity;
+
+    enum status{
+    NEW,
+    OPEN, IN_PROGRESS, RESOLVED
+    }
+
+    enum severity{
+        LOW, MEDIUM, HIGH, CRITICAL
     }
 
     public Long getId(){
