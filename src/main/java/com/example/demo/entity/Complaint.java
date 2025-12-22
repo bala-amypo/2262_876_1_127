@@ -30,9 +30,10 @@ public class Complaint {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Severity severity;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Severity severity;
+    private Urgency urgency;
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id", nullable = false)
@@ -44,6 +45,10 @@ public class Complaint {
 
     public enum Severity {
         LOW, MEDIUM, HIGH, CRITICAL
+    }
+
+    public enum Urgency {
+        LOW, MEDIUM, HIGH, IMMEDIATE
     }
 
     @PrePersist

@@ -13,8 +13,9 @@ public class PriorityRule{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Schema(hidden = true)
     private Long id;
-    private String category, description;
-    private int baseScore;
+    private String category, description, rulename;
+    private int baseScore, weight;
+    boolean active;
 
 
     public Long getId(){
