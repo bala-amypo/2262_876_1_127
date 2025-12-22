@@ -33,7 +33,6 @@ public Complaint submitComplaint(Complaint request) {
         throw new IllegalArgumentException("user.id is required");
     }
 
-    request.setId(null);
 
     Long userId = request.getUser().getId();
     User user = userRepo.findById(userId)
