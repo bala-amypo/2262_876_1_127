@@ -82,10 +82,11 @@ public class ComplaintServiceImpl implements ComplaintService {
         // You can keep ComplaintStatus persistence logic here
         // (tests do not assert on this method)
     }
-    @Override
+ @Override
 public List<Complaint> getUserComplaints(Long userId) {
-    return complaintRepository.findByUserId(userId);
+    return complaintRepository.findByCustomer_Id(userId);
 }
+
 
 @Override
 public Complaint submitComplaint(Complaint complaint) {

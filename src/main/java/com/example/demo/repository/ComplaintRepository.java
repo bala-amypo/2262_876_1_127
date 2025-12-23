@@ -15,7 +15,8 @@ public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
     // ===== Existing methods (kept) =====
     List<Complaint> findByUser(User user);
 
-    List<Complaint> findByUserId(Long userId);
+// ✅ ADD this
+List<Complaint> findByCustomer_Id(Long userId);
 
     // ===== Test-required method =====
     List<Complaint> findByCustomer(User customer);
