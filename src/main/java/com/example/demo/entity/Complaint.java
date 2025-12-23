@@ -2,6 +2,9 @@ package com.example.demo.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,8 +19,9 @@ public class Complaint {
     private String title;
     private String description;
     private String category;
+    private String channel;
 
-    private int priorityScore;
+    private Integer priorityScore;
 
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     @JsonIgnore
@@ -25,7 +29,7 @@ public class Complaint {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Status status;
+    private Status status = Status.NEW;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
@@ -35,12 +39,22 @@ public class Complaint {
     @Column(nullable = false)
     private Urgency urgency;
 
+    // ===== REQUIRED BY TESTS =====
+
     @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    @JoinColumn(name = "customer_id", nullable = false)
+    private User customer;
+
+    @ManyToOne
+    private User assignedAgent;
+
+    @ManyToMany
+    private Set<PriorityRule> priorityRules = new HashSet<>();
+
+    // ==============================
 
     public enum Status {
-        NEW, OPEN, IN_PROGRESS, RESOLVED
+        NEW, IN_PROGRESS, RESOLVED, CLOSED
     }
 
     public enum Severity {
@@ -54,14 +68,21 @@ public class Complaint {
     @PrePersist
     public void onCreate() {
         this.submittedOn = LocalDateTime.now();
-        this.status = Status.NEW;
+        if (this.status == null) {
+            this.status = Status.NEW;
+        }
         if (this.severity == null) {
             this.severity = Severity.LOW;
         }
-        if(this.urgency == null){
+        if (this.urgency == null) {
             this.urgency = Urgency.LOW;
         }
+        if (this.priorityScore == null) {
+            this.priorityScore = 0;
+        }
     }
+
+    // ===== Getters & Setters =====
 
     public Long getId() { return id; }
 
@@ -74,8 +95,11 @@ public class Complaint {
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
 
-    public int getPriorityScore() { return priorityScore; }
-    public void setPriorityScore(int priorityScore) { this.priorityScore = priorityScore; }
+    public String getChannel() { return channel; }
+    public void setChannel(String channel) { this.channel = channel; }
+
+    public Integer getPriorityScore() { return priorityScore; }
+    public void setPriorityScore(Integer priorityScore) { this.priorityScore = priorityScore; }
 
     public LocalDateTime getSubmittedOn() { return submittedOn; }
 
@@ -87,21 +111,30 @@ public class Complaint {
 
     public Urgency getUrgency() { return urgency; }
     public void setUrgency(Urgency urgency) { this.urgency = urgency; }
- 
 
-    public User getUser() { return user; }
-    public void setUser(User user) { this.user = user; }
+    // === Test-expected names ===
+    public User getCustomer() { return customer; }
+    public void setCustomer(User customer) { this.customer = customer; }
+
+    public User getAssignedAgent() { return assignedAgent; }
+    public void setAssignedAgent(User assignedAgent) { this.assignedAgent = assignedAgent; }
+
+    public Set<PriorityRule> getPriorityRules() { return priorityRules; }
+
+    // ===== Constructors =====
 
     public Complaint() {}
 
     public Complaint(String title, String description, String category,
-                     int priorityScore, Severity severity, User user, Urgency urgency) {
+                     Integer priorityScore, Severity severity,
+                     User customer, Urgency urgency) {
         this.title = title;
         this.description = description;
         this.category = category;
         this.priorityScore = priorityScore;
         this.severity = severity;
         this.urgency = urgency;
-        this.user = user;
+        this.customer = customer;
+        this.status = Status.NEW;
     }
 }
