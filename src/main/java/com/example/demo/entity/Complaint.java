@@ -120,6 +120,9 @@ public class Complaint {
     public void setAssignedAgent(User assignedAgent) { this.assignedAgent = assignedAgent; }
 
     public Set<PriorityRule> getPriorityRules() { return priorityRules; }
+public void setId(Long id) {
+    this.id = id;
+}
 
     // ===== Constructors =====
 

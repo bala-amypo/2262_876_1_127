@@ -11,7 +11,7 @@ import java.io.IOException;
 public class SimpleEchoServlet extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
 
         if (name == null || name.trim().isEmpty()) {

@@ -71,4 +71,8 @@ public class PriorityRule {
 
     // ---- complaints ----
     public Set<Complaint> getComplaints() { return complaints; }
+    public void setId(Long id) {
+    this.id = id;
+}
+
 }
