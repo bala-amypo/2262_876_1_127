@@ -12,16 +12,12 @@ import java.util.List;
 @Repository
 public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
 
-    // ===== Existing methods (kept) =====
-    List<Complaint> findByUser(User user);
-
-// ✅ ADD this
-List<Complaint> findByCustomer_Id(Long userId);
-
-    // ===== Test-required method =====
+    // For tests
     List<Complaint> findByCustomer(User customer);
 
-    // ===== Test-required HQL =====
+    // For controllers (runtime)
+    List<Complaint> findByCustomer_Id(Long userId);
+
     @Query("""
         SELECT c
         FROM Complaint c
