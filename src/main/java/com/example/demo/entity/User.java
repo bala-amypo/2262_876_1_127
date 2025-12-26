@@ -1,10 +1,13 @@
 package com.example.demo.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
+@Table(name = "users")
 public class User {
 
     @Id
@@ -12,9 +15,12 @@ public class User {
     private Long id;
 
     @Column(unique = true)
+    @NotBlank(message = "Email is required")
+    @Email(message = "Invalid email format")
     private String email;
 
     // ===== Existing field (kept) =====
+    @NotBlank(message = "Name is required")
     private String name;
 
     // ===== Alias for tests =====
@@ -22,6 +28,7 @@ public class User {
     private String fullName;
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotBlank(message = "Password is required")
     private String password;
 
     @Schema(hidden = true)
@@ -43,6 +50,14 @@ public class User {
         if (this.name == null && this.fullName != null) {
             this.name = this.fullName;
         }
+        // Validate email format
+        if (this.email != null && !isValidEmail(this.email)) {
+            throw new IllegalArgumentException("Invalid email format");
+        }
+    }
+    
+    private boolean isValidEmail(String email) {
+        return email.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     }
 
     // ===== Constructors =====

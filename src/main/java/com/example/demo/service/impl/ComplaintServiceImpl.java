@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.example.demo.dto.ComplaintRequest;
 import com.example.demo.entity.Complaint;
+import com.example.demo.entity.ComplaintStatus;
 import com.example.demo.entity.PriorityRule;
 import com.example.demo.entity.User;
 import com.example.demo.repository.ComplaintRepository;
@@ -73,15 +74,28 @@ public class ComplaintServiceImpl implements ComplaintService {
     }
 
     // ===== YOUR EXISTING LOGIC (kept) =====
-    @Override
-    public void updateComplaintStatus(Long id, String status) {
+@Override
+public void updateComplaintStatus(Long id, String status) {
 
-        Complaint complaint = complaintRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Complaint not found"));
+    Complaint complaint = complaintRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("Complaint not found"));
 
-        // You can keep ComplaintStatus persistence logic here
-        // (tests do not assert on this method)
-    }
+    Complaint.Status newStatus =
+            Complaint.Status.valueOf(status.toUpperCase());
+
+    // update complaint
+    complaint.setStatus(newStatus);
+    complaintRepository.save(complaint);
+
+    // INSERT history row (THIS IS THE KEY)
+    ComplaintStatus cs = new ComplaintStatus();
+    cs.setComplaint(complaint);
+    cs.setStatus(newStatus.name());
+
+    statusRepo.save(cs); // ← without this, nothing is created
+}
+
+
  @Override
 public List<Complaint> getUserComplaints(Long userId) {
     return complaintRepository.findByCustomer_Id(userId);
@@ -90,7 +104,14 @@ public List<Complaint> getUserComplaints(Long userId) {
 
 @Override
 public Complaint submitComplaint(Complaint complaint) {
-    // Preserve existing controller behavior
+    // Compute priority score
+    int score = priorityRuleService.computePriorityScore(complaint);
+    complaint.setPriorityScore(score);
+
+    // Attach active rules
+    List<PriorityRule> rules = priorityRuleService.getActiveRules();
+    complaint.getPriorityRules().addAll(rules);
+
     return complaintRepository.save(complaint);
 }
 
