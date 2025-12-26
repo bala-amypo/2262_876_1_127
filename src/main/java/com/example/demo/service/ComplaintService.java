@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface ComplaintService {
 
+    // ===== EXISTING METHODS (kept) =====
     Complaint submitComplaint(Complaint request);
 
     List<Complaint> getUserComplaints(Long userId);
@@ -16,25 +17,7 @@ public interface ComplaintService {
 
     void updateComplaintStatus(Long id, String status);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // ===== TEST-REQUIRED METHODS (added) =====
     Complaint submitComplaint(ComplaintRequest request, User user);
 
     List<Complaint> getComplaintsForUser(User user);

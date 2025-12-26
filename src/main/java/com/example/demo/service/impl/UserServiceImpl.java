@@ -14,11 +14,13 @@ public class UserServiceImpl implements UserService {
     private final UserRepository repo;
     private final PasswordEncoder passwordEncoder;
 
+    // ===== Constructor REQUIRED by tests =====
     public UserServiceImpl(UserRepository repo, PasswordEncoder passwordEncoder) {
         this.repo = repo;
         this.passwordEncoder = passwordEncoder;
     }
 
+    // ===== TEST-EXPECTED METHOD =====
     @Override
     public User registerCustomer(String name, String email, String password) {
 
@@ -35,13 +37,14 @@ public class UserServiceImpl implements UserService {
         return repo.save(user);
     }
 
+    // ===== TEST-EXPECTED METHOD =====
     @Override
     public User findByEmail(String email) {
         return repo.findByEmail(email)
                 .orElseThrow(() -> new RuntimeException("User not found"));
     }
 
-
+    // ===== YOUR EXISTING METHOD (kept) =====
     @Override
     public User registerUser(User user) {
         user.setId(null);
@@ -52,6 +55,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    // ===== YOUR EXISTING METHOD (kept) =====
     @Override
     public User loginUser(User user) {
 
@@ -62,6 +66,7 @@ public class UserServiceImpl implements UserService {
 
         User existingUser = dbUser.get();
 
+        // NOTE: legacy login (plain password)
         if (!existingUser.getPassword().equals(user.getPassword())) {
             throw new RuntimeException("Invalid Password!");
         }
