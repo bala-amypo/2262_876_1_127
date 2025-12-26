@@ -8,7 +8,5 @@ import com.example.demo.entity.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
-    // ===== Test-required method =====
     Optional<User> findByEmail(String email);
 }
