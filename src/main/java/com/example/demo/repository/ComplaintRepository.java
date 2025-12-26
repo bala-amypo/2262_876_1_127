@@ -12,7 +12,10 @@ import java.util.List;
 @Repository
 public interface ComplaintRepository extends JpaRepository<Complaint, Long> {
 
+    // For tests
     List<Complaint> findByCustomer(User customer);
+
+    // For controllers (runtime)
     List<Complaint> findByCustomer_Id(Long userId);
 
     @Query("""
