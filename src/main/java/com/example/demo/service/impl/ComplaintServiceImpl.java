@@ -22,7 +22,7 @@ public class ComplaintServiceImpl implements ComplaintService {
     private final UserRepository userRepo;
     private final PriorityRuleService priorityRuleService;
 
-    // ===== Constructor required by TESTS =====
+
     public ComplaintServiceImpl(
             ComplaintRepository complaintRepository,
             ComplaintStatusRepository statusRepo,
@@ -35,7 +35,7 @@ public class ComplaintServiceImpl implements ComplaintService {
         this.priorityRuleService = priorityRuleService;
     }
 
-    // ===== TEST-EXPECTED METHOD =====
+
     @Override
     public Complaint submitComplaint(ComplaintRequest req, User user) {
 
@@ -49,38 +49,32 @@ public class ComplaintServiceImpl implements ComplaintService {
         c.setCustomer(user);
         c.setStatus(Complaint.Status.NEW);
 
-        // Compute priority score
+
         int score = priorityRuleService.computePriorityScore(c);
         c.setPriorityScore(score);
 
-        // Attach active rules
         List<PriorityRule> rules = priorityRuleService.getActiveRules();
         c.getPriorityRules().addAll(rules);
 
         return complaintRepository.save(c);
     }
 
-    // ===== TEST-EXPECTED METHOD =====
     @Override
     public List<Complaint> getComplaintsForUser(User user) {
         return complaintRepository.findByCustomer(user);
     }
 
-    // ===== TEST-EXPECTED METHOD =====
     @Override
     public List<Complaint> getPrioritizedComplaints() {
         return complaintRepository.findAllOrderByPriorityScoreDescCreatedAtAsc();
     }
 
-    // ===== YOUR EXISTING LOGIC (kept) =====
     @Override
     public void updateComplaintStatus(Long id, String status) {
 
         Complaint complaint = complaintRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Complaint not found"));
 
-        // You can keep ComplaintStatus persistence logic here
-        // (tests do not assert on this method)
     }
  @Override
 public List<Complaint> getUserComplaints(Long userId) {
@@ -90,7 +84,7 @@ public List<Complaint> getUserComplaints(Long userId) {
 
 @Override
 public Complaint submitComplaint(Complaint complaint) {
-    // Preserve existing controller behavior
+
     return complaintRepository.save(complaint);
 }
 
