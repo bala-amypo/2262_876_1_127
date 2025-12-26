@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import io.swagger.v3.oas.annotations.media.Schema;
 
 @Entity
@@ -27,6 +29,7 @@ public class PriorityRule {
     private boolean active = true;
 
     @ManyToMany(mappedBy = "priorityRules")
+    @JsonIgnore
     private Set<Complaint> complaints = new HashSet<>();
 
     // ===== Constructors =====
@@ -56,6 +59,11 @@ public class PriorityRule {
     public void setWeight(int weight) {
         this.weight = weight;
         this.baseScore = weight; // keep in sync
+    }
+
+    public void setWeight(double weight) {
+        this.weight = (int) weight;
+        this.baseScore = (int) weight;
     }
 
     // ---- baseScore (legacy) ----

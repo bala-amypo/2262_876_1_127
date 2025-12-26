@@ -1,14 +1,30 @@
 package com.example.demo.dto;
 
 import com.example.demo.entity.Complaint;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class ComplaintRequest {
 
+    @NotBlank(message = "Title is required")
+    @Size(max = 200, message = "Title must not exceed 200 characters")
     private String title;
+    
+    @NotBlank(message = "Description is required")
+    @Size(max = 1000, message = "Description must not exceed 1000 characters")
     private String description;
+    
+    @NotBlank(message = "Category is required")
     private String category;
+    
+    @NotBlank(message = "Channel is required")
     private String channel;
+    
+    @NotNull(message = "Severity is required")
     private Complaint.Severity severity;
+    
+    @NotNull(message = "Urgency is required")
     private Complaint.Urgency urgency;
 
     public String getTitle() {
