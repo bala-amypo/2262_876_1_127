@@ -32,6 +32,7 @@ public class SecurityConfig {
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
             .authorizeHttpRequests(auth -> auth
                 // Public endpoints
+                .requestMatchers("/auth/**", "https://9152.32procr.amypo.ai/**", "/v3/api-docs/**").permitAll()
                 .requestMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 // Test endpoints for role verification
                 .requestMatchers("/test/user").hasAnyRole("USER", "CUSTOMER", "AGENT", "ADMIN")
